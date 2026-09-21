@@ -11,11 +11,11 @@
 
 Google Colab notebook (publicly accessible, self contained, downloads its own data):
 
-PASTE_COLAB_URL_HERE
+https://colab.research.google.com/github/seanw00ds/xg-from-scratch/blob/main/notebook/xg_logistic_regression.ipynb
 
 Source repository:
 
-PASTE_GITHUB_URL_HERE
+https://github.com/seanw00ds/xg-from-scratch
 
 The notebook downloads the raw event data from StatsBomb, builds every feature, trains every model and reproduces every figure and table in this report. It runs top to bottom on a fresh runtime with no manual steps. The offline copy I demonstrate from is the same file.
 

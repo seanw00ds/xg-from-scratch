@@ -92,8 +92,28 @@ Implementation log written **as we go**, not retrofitted. It documents AI use, a
 
 `SeanWoods_26107565_2026_UTS_ML_Journal.pdf`
 
+## Progress — Mon 21 Sep 2026
+
+Built in one session. Everything below is done and verified.
+
+- Data: 7,451 shots, 663 goals (8.9%), 314 matches, six men's international
+  tournaments 2018-2024. All carry 360 freeze frames and StatsBomb's own xG.
+- Model: logistic regression from scratch, gradient derived by hand, checked
+  against central differences (4.55e-10). Metrics all hand written and checked
+  against sklearn. Gradient descent solution matches sklearn LBFGS to 0.0074.
+- Results: M4 test log loss 0.2568 vs StatsBomb's commercial 0.2472.
+- Research question answered: features bought resolution (0.0083 to 0.0125),
+  not reliability (0.0013 to 0.0008). Overall bias +0.0001 while counter
+  attacks are underrated by 6.0 points and crosses by 4.2.
+- Extra experiment: same model trained on squared error, calibration 50% worse.
+- Report written, PDF renders at report/SeanWoods_26107565_2026_UTS_ML_Journal.pdf
+- Viva prep written at notes/viva-prep.md
+- Local git repo initialised and committed.
+
 ## Open items
 
-- [ ] GitHub repo
-- [ ] Confirm StatsBomb competition/season choice (needs enough shots, ideally with 360 data)
-- [ ] Decide: practice defence 29 Sep, or standard 13 Oct
+- [ ] Push to public GitHub repo, paste Colab + repo URLs into the report
+- [ ] Re-render PDF once URLs are in
+- [ ] Submit (target Thu 24 Sep), then email Nicole Zhuo to register for the
+      29 Sep practice defence
+- [ ] Rehearse the 5 minutes out loud, twice, against a timer
