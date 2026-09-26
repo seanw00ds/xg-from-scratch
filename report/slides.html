@@ -1,0 +1,270 @@
+<title>A3 slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  @page { size: 338mm 190mm; margin: 0; }
+
+  :root {
+    --paper: #FFFFFF;
+    --ink: #16201B;
+    --soft: #55645B;
+    --faint: #8A968E;
+    --rule: #D8E0DA;
+    --pitch: #12614A;
+    --pitch-soft: #E6F1EB;
+    --chalk: #2B5D8A;
+    --flag: #A8352A;
+    --display: "Barlow Condensed", Arial, sans-serif;
+    --body: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Menlo, monospace;
+  }
+
+  body { margin: 0; background: #5A6660; font-family: var(--body); color: var(--ink); }
+
+  .slide {
+    width: 338mm;
+    height: 190mm;
+    background: var(--paper);
+    padding: 17mm 20mm 14mm;
+    box-sizing: border-box;
+    page-break-after: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 8px;
+    overflow: hidden;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pitch);
+    margin: 0 0 6mm;
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: 54pt;
+    line-height: 0.95;
+    font-weight: 700;
+    margin: 0 0 5mm;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: 34pt;
+    line-height: 1.02;
+    font-weight: 600;
+    margin: 0 0 6mm;
+  }
+  p { font-size: 13pt; line-height: 1.5; margin: 0 0 4mm; max-width: 95%; }
+  .lead { font-size: 15pt; color: var(--soft); }
+  code, .mono { font-family: var(--mono); font-size: 0.92em; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12mm; flex: 1; min-height: 0; padding-bottom: 6mm; }
+  .cols.wide-left { grid-template-columns: 1.15fr 1fr; }
+
+  .io { border-top: 2px solid var(--ink); padding-top: 3mm; }
+  .io h3 {
+    font-family: var(--mono);
+    font-size: 10pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 3mm;
+    color: var(--pitch);
+  }
+  .io p { font-size: 12.5pt; margin-bottom: 2.5mm; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 12pt; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 2.4mm 4mm 2.4mm 0; border-bottom: 1px solid var(--rule); }
+  th {
+    font-family: var(--mono);
+    font-size: 9pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 500;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  td.n { font-family: var(--mono); white-space: nowrap; }
+  tr.hi td { background: var(--pitch-soft); font-weight: 600; }
+  tr.ref td { color: var(--soft); }
+
+  .hla { display: grid; gap: 0; }
+  .hla .row {
+    display: grid;
+    grid-template-columns: 22mm 1fr;
+    gap: 6mm;
+    padding: 4mm 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .hla .letter {
+    font-family: var(--display);
+    font-size: 30pt;
+    font-weight: 700;
+    color: var(--pitch);
+    line-height: 1;
+  }
+  .hla .what { font-size: 13pt; }
+  .hla .what em { display: block; font-style: normal; color: var(--soft); font-size: 11.5pt; margin-top: 1mm; }
+
+  .pull {
+    border-left: 3px solid var(--flag);
+    padding-left: 6mm;
+    font-size: 15pt;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 4mm 0;
+  }
+  .pull b { color: var(--flag); }
+
+  figure { margin: 0; display: flex; flex-direction: column; justify-content: center; }
+  figure img { width: 100%; height: auto; max-height: 108mm; object-fit: contain; }
+  figcaption { font-family: var(--mono); font-size: 9.5pt; color: var(--faint); margin-top: 2mm; }
+
+  .foot {
+    position: absolute;
+    bottom: 7mm;
+    left: 20mm;
+    right: 20mm;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 2.5mm;
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9.5pt;
+    padding: 1mm 2.5mm;
+    background: var(--pitch-soft);
+    color: var(--pitch);
+    border-radius: 2px;
+  }
+</style>
+
+<!-- 1 -->
+<div class="slide">
+  <p class="eyebrow">31005 Machine Learning &middot; A2 &middot; Sean Woods 26107565</p>
+  <h1>Expected goals from scratch</h1>
+  <p class="lead">Logistic regression built by hand, and what log loss does not measure.<br>7,451 shots &middot; 314 matches &middot; six international tournaments</p>
+  <div class="cols" style="margin-top:6mm">
+    <div class="io">
+      <h3>Training</h3>
+      <p><b>In:</b> <span class="mono">X</span>, 4,444 shots &times; 35 features. <span class="mono">y</span> in {0,1}, 1 = scored.</p>
+      <p><b>Out:</b> <span class="mono">w</span>, 35 weights plus a bias. Plus the training mean and sd of every feature.</p>
+    </div>
+    <div class="io">
+      <h3>Deployment</h3>
+      <p><b>In:</b> one shot's features, scaled with the <i>stored</i> training statistics.</p>
+      <p><b>Out:</b> one number in (0, 1). No threshold, no label. <b>The probability is the product.</b></p>
+    </div>
+  </div>
+  <div class="foot"><span>github.com/seanw00ds/xg-from-scratch</span><span>1 / 5</span></div>
+</div>
+
+<!-- 2 -->
+<div class="slide">
+  <p class="eyebrow">The question</p>
+  <h2>It is trained on one thing<br>and judged on another</h2>
+  <div class="cols wide-left">
+    <div>
+      <p>An xG model cannot know whether a shot goes in. Two identical chances end differently and neither outcome is a mistake.</p>
+      <p>What it is actually for is <b>calibration</b>: of the chances it calls 0.30, about 30% should be scored.</p>
+      <p>But it is trained by minimising <b>log loss over individual binary outcomes</b>. Those are not the same objective.</p>
+      <div class="pull">Where does that gap bite, how do you detect it, and when you add features, are you buying <b>calibration</b> or only <b>sharpness</b>?</div>
+    </div>
+    <figure>
+      <img src="../results/fig2_calibration.png" alt="Reliability diagram">
+      <figcaption>Reliability diagram, 63 test matches. On the line means the stated percentage matched reality.</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>Calibration is honesty. Sharpness is willingness to commit.</span><span>2 / 5</span></div>
+</div>
+
+<!-- 3 -->
+<div class="slide">
+  <p class="eyebrow">The model</p>
+  <h2>Start from the perceptron,<br>change two of the three parts</h2>
+  <div class="cols wide-left">
+    <div class="hla">
+      <div class="row">
+        <span class="letter">H</span>
+        <span class="what">Every function <span class="mono">&sigma;(w&middot;x + b)</span><em>Unchanged from the perceptron. Choosing weights picks one member.</em></span>
+      </div>
+      <div class="row">
+        <span class="letter">L</span>
+        <span class="what">Cross entropy + L2, not on the bias<em>Proper scoring rule. Gradient survives when the model is confidently wrong.</em></span>
+      </div>
+      <div class="row">
+        <span class="letter">A</span>
+        <span class="what">Full-batch gradient descent<em><span class="mono">&nabla;L = (1/n) X&#7488;(&sigma;(Xw) &minus; y) + 2&lambda;w</span> &middot; converged in 501 steps at &eta; = 0.5</em></span>
+      </div>
+    </div>
+    <div>
+      <p><b>Why not the perceptron.</b> It returns a hard label and I need a probability, so the output type is wrong. And shot data is not separable: the same chance is scored one week and saved the next, so it never converges.</p>
+      <p><b>The gradient is error times input.</b> The sigmoid's derivative and the log's derivative cancel, which is why cross entropy and the sigmoid are paired.</p>
+      <p><span class="tag">verified</span> analytic gradient vs central differences: max relative error <span class="mono">4.55e&minus;10</span></p>
+    </div>
+  </div>
+  <div class="foot"><span>Split by match, never by shot &middot; 187 train / 62 val / 63 test</span><span>3 / 5</span></div>
+</div>
+
+<!-- 4 -->
+<div class="slide">
+  <p class="eyebrow">The finding</p>
+  <h2>Perfect on average.<br>Wrong underneath.</h2>
+  <div class="cols wide-left">
+    <div>
+      <table>
+        <tr><th>Situation</th><th>Shots</th><th>Model</th><th>Really</th><th>Gap</th></tr>
+        <tr><td>All shots</td><td class="n">1,509</td><td class="n">9.69%</td><td class="n">9.68%</td><td class="n">+0.0</td></tr>
+        <tr class="hi"><td>Counter attacks</td><td class="n">55</td><td class="n">15.8%</td><td class="n">21.8%</td><td class="n">&minus;6.0</td></tr>
+        <tr class="hi"><td>From a cross</td><td class="n">270</td><td class="n">12.9%</td><td class="n">17.0%</td><td class="n">&minus;4.2</td></tr>
+        <tr><td>Beyond 20 yds</td><td class="n">660</td><td class="n">4.2%</td><td class="n">2.3%</td><td class="n">+2.0</td></tr>
+      </table>
+      <div class="pull">Log loss is a sum over rows. It has <b>no concept of "counter attack"</b>, so an underestimate here and an overestimate there are worth the same to it as getting both right.</div>
+      <p>You cannot find this in the loss. You find it by grouping residuals along dimensions the model never saw.</p>
+    </div>
+    <figure>
+      <img src="../results/fig5_subgroup_bias.png" alt="Subgroup bias">
+      <figcaption>Mean predicted xG minus observed rate. Overall bias is +0.0001. None of these are.</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>A team that scores on transitions would be told its chances are worth less than they are</span><span>4 / 5</span></div>
+</div>
+
+<!-- 5 -->
+<div class="slide">
+  <p class="eyebrow">Evidence</p>
+  <h2>Three numbers that carry it</h2>
+  <div class="cols wide-left">
+    <div>
+      <table>
+        <tr><th>Model</th><th>Features</th><th>Log loss</th><th>ECE</th><th>Accuracy</th></tr>
+        <tr><td>M0 base rate</td><td class="n">0</td><td class="n">0.3182</td><td class="n">0.0074</td><td class="n">90.3%</td></tr>
+        <tr><td>M1 distance</td><td class="n">1</td><td class="n">0.2783</td><td class="n">0.0237</td><td class="n">90.3%</td></tr>
+        <tr><td>M2 + angle</td><td class="n">2</td><td class="n">0.2740</td><td class="n">0.0280</td><td class="n">90.6%</td></tr>
+        <tr><td>M3 + situation</td><td class="n">30</td><td class="n">0.2599</td><td class="n">0.0302</td><td class="n">91.0%</td></tr>
+        <tr class="hi"><td>M4 + freeze frame</td><td class="n">35</td><td class="n">0.2568</td><td class="n">0.0245</td><td class="n">91.1%</td></tr>
+        <tr class="ref"><td>StatsBomb commercial</td><td class="n">&mdash;</td><td class="n">0.2472</td><td class="n">0.0194</td><td class="n">90.9%</td></tr>
+        <tr><td>M4 on squared error</td><td class="n">35</td><td class="n">0.2657</td><td class="n">0.0373</td><td class="n">90.9%</td></tr>
+      </table>
+    </div>
+    <div>
+      <p><b>1.</b> Sixty lines of NumPy land within <b>0.010</b> log loss of a commercial model trained on millions of shots.</p>
+      <p><b>2.</b> Predicting "no goal" every time scores <b>90.3%</b> accuracy. Accuracy is not measuring the task.</p>
+      <p><b>3.</b> Changing only the criterion to squared error made calibration <b>50% worse</b> while barely moving the ranking. The <span class="mono">p(1&minus;p)</span> factor survives and the update stalls where the model is most wrong.</p>
+      <p style="margin-top:6mm"><b>Next:</b> put the grouping into the criterion. A squared group-bias penalty, so the loss contains what the evaluation measures.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Features bought resolution (0.0083 &rarr; 0.0125), not reliability (0.0013 &rarr; 0.0008)</span><span>5 / 5</span></div>
+</div>

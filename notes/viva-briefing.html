@@ -1,0 +1,666 @@
+<title>xG Viva Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --paper: #F6F7F5;
+    --card: #FFFFFF;
+    --ink: #17201C;
+    --ink-soft: #4C5A52;
+    --ink-faint: #7D8A82;
+    --rule: #DCE2DC;
+    --pitch: #12614A;
+    --pitch-soft: #E4EFE9;
+    --chalk: #2B5D8A;
+    --chalk-soft: #E3ECF4;
+    --flag: #A8352A;
+    --flag-soft: #F6E4E1;
+    --display: "Barlow Condensed", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F1512;
+      --card: #171F1B;
+      --ink: #E8EDE9;
+      --ink-soft: #A5B2AA;
+      --ink-faint: #74827A;
+      --rule: #2A352F;
+      --pitch: #57C39D;
+      --pitch-soft: #16302810;
+      --pitch-soft: #14291F;
+      --chalk: #79B1E0;
+      --chalk-soft: #17252F;
+      --flag: #E58878;
+      --flag-soft: #2C1C19;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0F1512;
+    --card: #171F1B;
+    --ink: #E8EDE9;
+    --ink-soft: #A5B2AA;
+    --ink-faint: #74827A;
+    --rule: #2A352F;
+    --pitch: #57C39D;
+    --pitch-soft: #14291F;
+    --chalk: #79B1E0;
+    --chalk-soft: #17252F;
+    --flag: #E58878;
+    --flag-soft: #2C1C19;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 0 72px;
+  }
+
+  /* ---------- masthead ---------- */
+  .mast {
+    border-bottom: 3px solid var(--ink);
+    padding-block: 36px 14px;
+    margin-bottom: 8px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pitch);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(38px, 9vw, 62px);
+    line-height: 0.96;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    max-width: 58ch;
+  }
+  .fixture {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    padding-bottom: 6px;
+  }
+  .fixture b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  section { padding-block: 34px 8px; border-top: 1px solid var(--rule); }
+  section:first-of-type { border-top: none; }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 18px;
+  }
+  h3 {
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 26px 0 6px;
+  }
+  p { margin: 0 0 14px; max-width: 66ch; }
+  ul, ol { margin: 0 0 14px; padding-left: 20px; max-width: 66ch; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 600; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--pitch-soft);
+    color: var(--ink);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ---------- plan ---------- */
+  .plan { display: grid; gap: 10px; margin-bottom: 18px; }
+  .slot {
+    display: grid;
+    grid-template-columns: 82px 1fr;
+    gap: 16px;
+    align-items: start;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--pitch);
+    padding: 12px 14px;
+  }
+  .slot .when {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pitch);
+    padding-top: 2px;
+  }
+  .slot .what { font-size: 15px; }
+  .slot .what em { color: var(--ink-soft); font-style: normal; display: block; font-size: 13.5px; }
+  .slot.urgent { border-left-color: var(--flag); }
+  .slot.urgent .when { color: var(--flag); }
+
+  /* ---------- tables ---------- */
+  .scroll { overflow-x: auto; margin: 0 0 18px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom-color: var(--ink);
+  }
+  td.num { font-family: var(--mono); white-space: nowrap; }
+  tr.best td { background: var(--pitch-soft); font-weight: 600; }
+  .term { font-family: var(--mono); font-weight: 500; color: var(--pitch); white-space: nowrap; }
+
+  /* ---------- script ---------- */
+  .beat {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .beat:last-child { border-bottom: none; }
+  .clock {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--pitch);
+    line-height: 1;
+    padding-top: 3px;
+  }
+  .beat h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+  .say {
+    border-left: 2px solid var(--chalk);
+    padding: 2px 0 2px 14px;
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 62ch;
+  }
+
+  /* ---------- q and a ---------- */
+  .qa { margin-bottom: 22px; }
+  .q {
+    font-weight: 600;
+    margin: 0 0 6px;
+    display: flex;
+    gap: 9px;
+  }
+  .q::before {
+    content: "Q";
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--chalk);
+    border: 1px solid var(--chalk);
+    border-radius: 2px;
+    padding: 0 4px;
+    height: fit-content;
+    margin-top: 3px;
+  }
+  .a { margin: 0 0 4px 26px; color: var(--ink-soft); }
+  .a strong { color: var(--ink); }
+
+  /* ---------- callouts ---------- */
+  .note {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--chalk);
+    padding: 16px 18px;
+    margin: 0 0 20px;
+  }
+  .note.warn { border-top-color: var(--flag); }
+  .note.grasp { border-top-color: var(--pitch); }
+  .note h4 {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    color: var(--chalk);
+  }
+  .note.warn h4 { color: var(--flag); }
+  .note.grasp h4 { color: var(--pitch); }
+  .note p:last-child, .note ul:last-child { margin-bottom: 0; }
+
+  /* ---------- checklist ---------- */
+  .check { list-style: none; padding: 0; }
+  .check li {
+    display: flex;
+    gap: 11px;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .check li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid var(--ink-faint);
+    border-radius: 2px;
+    transform: translateY(2px);
+  }
+
+  .grasp-grid { display: grid; gap: 0; }
+  .grasp-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .grasp-row .lvl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .lvl.deep { color: var(--pitch); }
+  .lvl.rote { color: var(--chalk); }
+  .lvl.skip { color: var(--ink-faint); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 3px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 520px) {
+    .slot { grid-template-columns: 66px 1fr; gap: 12px; }
+    .beat { grid-template-columns: 42px 1fr; gap: 12px; }
+    h1 { font-size: 40px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="kicker">31005 Machine Learning &middot; A3 Peer-Viva</p>
+    <h1>Expected Goals, Defended</h1>
+    <p class="standfirst">Everything that matters for Tuesday, and nothing that doesn't. Read the grasp table first, then rehearse the five minutes out loud.</p>
+    <div class="fixture">
+      <span><b>Tue 29 Sep</b> practice defence</span>
+      <span><b>P1</b> you present first</span>
+      <span><b>5 min</b> + ~10 min questions</span>
+      <span><b>Zoom</b>, photo ID</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>The weekend plan</h2>
+    <p class="sub">Saturday 26 September</p>
+    <div class="plan">
+      <div class="slot urgent">
+        <span class="when">Today<br>2 hrs</span>
+        <span class="what">Ethics essay draft<em>1500 words, 30%, due Monday night, not started. This is the real risk in your week, not the viva.</em></span>
+      </div>
+      <div class="slot">
+        <span class="when">Today<br>1 hr</span>
+        <span class="what">This page, twice<em>Once to read, once to say the five concepts out loud without looking.</em></span>
+      </div>
+      <div class="slot">
+        <span class="when">Sunday<br>3 hrs</span>
+        <span class="what">Finish Ethics, build 5 slides<em>Slides are four headings and one table. Half an hour, not three.</em></span>
+      </div>
+      <div class="slot">
+        <span class="when">Monday</span>
+        <span class="what">Submit A2 and the essay, then rehearse<em>Time yourself twice. If you run past 5:30, cut the model slide, not the subgroup slide.</em></span>
+      </div>
+      <div class="slot">
+        <span class="when">Tuesday<br>morning</span>
+        <span class="what">Open everything 15 minutes early<em>Notebook already run, slides up, notes on a second screen, ID on the desk.</em></span>
+      </div>
+    </div>
+    <div class="note warn">
+      <h4>Honest readiness</h4>
+      <p>You are at roughly <strong>45%</strong>. You own the story, the features, the model shape and what the numbers are. You do not yet own error-versus-loss, why the gradient picks one weight over another, or calibration versus resolution. Those three are the whole gap, and they are about <strong>three focused hours</strong>, most of it spoken rather than read.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What to grasp, what to memorise, what to skip</h2>
+    <p class="sub">Spend your hours here, in this order</p>
+    <div class="grasp-grid">
+      <div class="grasp-row">
+        <span class="lvl deep">Grasp deeply &middot; 1</span>
+        <strong>Loss versus error</strong>
+        <span>Loss is how bad (always positive, the thing being minimised). Error is <code>p − y</code>, signed, and the sign is the direction. Being fuzzy here is the fastest way to look like you didn't build it.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl deep">Grasp deeply &middot; 2</span>
+        <strong>Which weight moves, and why</strong>
+        <span>Each weight's update is <code>error × that weight's own feature</code>. A feature that is 0 for this shot moves its weight by 0. The header weight only learns from headers.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl deep">Grasp deeply &middot; 3</span>
+        <strong>Calibration versus resolution</strong>
+        <span>Honesty versus willingness to commit. Your whole research finding is that features bought the second and not the first.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl rote">Memorise as a sentence</span>
+        <strong>Why log loss and not squared error</strong>
+        <span>The sigmoid goes flat when confident, log loss blows up at the same rate, they cancel, the update becomes error times input. You have the experiment to back it.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl rote">Memorise the figures</span>
+        <strong>Eight numbers</strong>
+        <span>In the table below. Especially <strong>35 features</strong>, which is the question Li says he uses to catch people out.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl skip">Skip entirely</span>
+        <strong>The code, line by line</strong>
+        <span>Nobody will ask you to read it. Know what the four functions do, not how they are written. Skip <code>build_dataset.py</code>, <code>make_notebook.py</code>, <code>make_pdf.py</code> completely.</span>
+      </div>
+      <div class="grasp-row">
+        <span class="lvl skip">Skip entirely</span>
+        <strong>Deriving the chain rule yourself</strong>
+        <span>You need the punchline and the intuition, not the algebra. "I derived it on paper and checked it numerically" is the claim, and it is true.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The words, settled</h2>
+    <p class="sub">If a term stops you mid-sentence on Tuesday, it will be one of these</p>
+    <div class="scroll">
+      <table>
+        <tr><th>Term</th><th>What it is</th><th>Yours</th></tr>
+        <tr><td class="term">x</td><td>One shot described as numbers</td><td class="num">35 of them</td></tr>
+        <tr><td class="term">y</td><td>What happened. 1 scored, 0 not</td><td class="num">0 or 1</td></tr>
+        <tr><td class="term">w</td><td>The weights. How much each feature counts</td><td class="num">35 + bias</td></tr>
+        <tr><td class="term">bias</td><td>Baseline dial, attached to no feature</td><td class="num">−2.562</td></tr>
+        <tr><td class="term">z</td><td>Everything added up. Any number at all</td><td class="num">−3.235</td></tr>
+        <tr><td class="term">σ</td><td>Sigmoid. Squashes z into 0–1</td><td class="num">S-curve</td></tr>
+        <tr><td class="term">p</td><td>The prediction, a probability</td><td class="num">0.038</td></tr>
+        <tr><td class="term">loss</td><td>How bad. Always positive</td><td class="num">3.274</td></tr>
+        <tr><td class="term">error</td><td>p − y. Signed. The direction</td><td class="num">−0.962</td></tr>
+        <tr><td class="term">gradient</td><td>error × feature, per weight</td><td class="num">one per w</td></tr>
+        <tr><td class="term">η</td><td>Learning rate. Step size</td><td class="num">0.5</td></tr>
+      </table>
+    </div>
+    <h3>Train, validation, test</h3>
+    <p>You split <strong>by match</strong>, never by shot, because shots from the same game share a keeper, a pitch and a scoreline, so they are not independent.</p>
+    <div class="scroll">
+      <table>
+        <tr><th>Split</th><th>Matches</th><th>Shots</th><th>What it is for</th></tr>
+        <tr><td><b>Train</b></td><td class="num">187</td><td class="num">4,444</td><td>Fitting the weights. The only data the model learns from</td></tr>
+        <tr><td><b>Validation</b></td><td class="num">62</td><td class="num">1,498</td><td>Watching for overfitting while training, and checking choices</td></tr>
+        <tr><td><b>Test</b></td><td class="num">63</td><td class="num">1,509</td><td>Touched once, at the very end. Every number you report</td></tr>
+      </table>
+    </div>
+    <p>If someone asks why you need all three: the moment you use a set to <em>choose</em> anything, it stops being an honest estimate of performance. Validation gets used for choosing, so test has to stay sealed.</p>
+  </section>
+
+  <section>
+    <h2>The three ideas you must actually understand</h2>
+    <p class="sub">Not memorised. Understood, so you can say them two different ways</p>
+
+    <h3>1. Loss says how bad. Error says which way.</h3>
+    <p>Modrić hits one from 27 yards. Your model said <strong>3.8%</strong>. It went in.</p>
+    <ul>
+      <li><strong>Loss</strong> = <code>−ln(0.038)</code> = <strong>3.274</strong>. Big, because the model claimed that was unlikely and it happened. Always positive. It cannot tell you which way to move, only that you are hurting.</li>
+      <li><strong>Error</strong> = <code>p − y</code> = <code>0.038 − 1</code> = <strong>−0.962</strong>. Negative, which by the way the subtraction is written means <em>too low</em>. So push up.</li>
+    </ul>
+    <p>Positive error means the model was too high, come down. Negative means too low, go up. That is the entire direction mechanism.</p>
+
+    <h3>2. How it knows which dial to turn</h3>
+    <p>Same error for every weight. Different <em>feature value</em>, so a different share each.</p>
+    <div class="scroll">
+      <table>
+        <tr><th>Weight</th><th>Feature value on this shot</th><th>error × feature</th><th>Effect</th></tr>
+        <tr><td>bias</td><td class="num">1.000 always</td><td class="num">−0.962</td><td>moves up hard</td></tr>
+        <tr><td>distance</td><td class="num">+0.986</td><td class="num">−0.948</td><td>moves up hard</td></tr>
+        <tr><td>angle</td><td class="num">−0.580</td><td class="num">+0.558</td><td>moves down</td></tr>
+        <tr><td>body_part=Head</td><td class="num">0 (right foot)</td><td class="num">0.000</td><td>untouched</td></tr>
+      </table>
+    </div>
+    <p>That last row is the answer to "how does it know". <strong>A feature that is zero contributes nothing, so its weight does not move.</strong> The header weight only ever learns from headers, the counter-attack weight only from counters. Each dial quietly accumulates evidence from the shots that involve it.</p>
+
+    <h3>3. Calibration and resolution, via the weather</h3>
+    <p>Think of a forecaster.</p>
+    <ul>
+      <li><strong>Calibration</strong> (also called reliability, measured by ECE): across every day they said 30%, did it rain about 30% of the time? That is <em>honesty</em>. Yours is <strong>0.0245</strong>, so your stated percentages are off by about two and a half points on average.</li>
+      <li><strong>Resolution</strong> (also called sharpness): do they ever actually commit? A forecaster who says 9% every single day is perfectly honest and totally useless. Yours went from <strong>0.0083 to 0.0125</strong> as features were added.</li>
+    </ul>
+    <p>Your instinct was right: resolution is putting your money where your mouth is. And your finding in one line: <strong>adding features made the model sharper, not more honest, because honesty was nearly free from the start.</strong></p>
+    <div class="note grasp">
+      <h4>Why honesty was free</h4>
+      <p>The model has a bias term, and log loss is a proper scoring rule. Between them, gradient descent drags the <em>average</em> prediction onto the base rate almost regardless of what the other weights do. Telling a 40% chance from a 5% chance is the part you actually pay for.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The numbers</h2>
+    <p class="sub">Memorise the bold ones. The rest you can read off a slide</p>
+    <div class="scroll">
+      <table>
+        <tr><th>Model</th><th>Features</th><th>Log loss</th><th>ROC-AUC</th><th>Accuracy</th></tr>
+        <tr><td>M0 base rate</td><td class="num">0</td><td class="num">0.3182</td><td class="num">0.500</td><td class="num">90.3%</td></tr>
+        <tr><td>M1 distance</td><td class="num">1</td><td class="num">0.2783</td><td class="num">0.768</td><td class="num">90.3%</td></tr>
+        <tr><td>M2 + angle</td><td class="num">2</td><td class="num">0.2740</td><td class="num">0.777</td><td class="num">90.6%</td></tr>
+        <tr><td>M3 + situation</td><td class="num">30</td><td class="num">0.2599</td><td class="num">0.811</td><td class="num">91.0%</td></tr>
+        <tr class="best"><td>M4 + freeze frame</td><td class="num">35</td><td class="num">0.2568</td><td class="num">0.812</td><td class="num">91.1%</td></tr>
+        <tr><td>StatsBomb commercial</td><td class="num">—</td><td class="num">0.2472</td><td class="num">0.827</td><td class="num">90.9%</td></tr>
+        <tr><td>M4 on squared error</td><td class="num">35</td><td class="num">0.2657</td><td class="num">0.809</td><td class="num">90.9%</td></tr>
+      </table>
+    </div>
+    <div class="note warn">
+      <h4>Do not get this backwards</h4>
+      <p>Log loss is a punishment, so <strong>lower is better</strong>. StatsBomb's 0.2472 beats your 0.2568. You did <em>not</em> beat them. The claim is: <strong>sixty lines of NumPy, written by hand, lands within 0.010 of a commercial model trained on millions of shots.</strong> That is the impressive version and it is true.</p>
+    </div>
+    <div class="scroll">
+      <table>
+        <tr><th>Fact</th><th>Value</th></tr>
+        <tr><td>Features in the final model</td><td class="num"><b>35 + bias</b></td></tr>
+        <tr><td>Shots, goals, base rate</td><td class="num"><b>7,451 &middot; 663 &middot; 8.9%</b></td></tr>
+        <tr><td>Matches, tournaments</td><td class="num">314 &middot; 6</td></tr>
+        <tr><td>Learning rate, iterations to converge</td><td class="num"><b>0.5 &middot; 501</b></td></tr>
+        <tr><td>Gradient check error</td><td class="num">4.55e-10</td></tr>
+        <tr><td>Reliability, M1 → M4</td><td class="num">0.0013 → 0.0008</td></tr>
+        <tr><td>Resolution, M1 → M4</td><td class="num"><b>0.0083 → 0.0125</b></td></tr>
+        <tr><td>Overall bias, M4</td><td class="num"><b>+0.0001</b></td></tr>
+      </table>
+    </div>
+    <h3>The subgroup table, which is the point of the whole project</h3>
+    <div class="scroll">
+      <table>
+        <tr><th>Situation</th><th>Shots</th><th>Model said</th><th>Really</th><th>Gap</th></tr>
+        <tr><td>All shots</td><td class="num">1,509</td><td class="num">9.69%</td><td class="num">9.68%</td><td class="num">+0.0</td></tr>
+        <tr class="best"><td>Counter attacks</td><td class="num">55</td><td class="num">15.8%</td><td class="num">21.8%</td><td class="num">−6.0</td></tr>
+        <tr><td>From a cross</td><td class="num">270</td><td class="num">12.9%</td><td class="num">17.0%</td><td class="num">−4.2</td></tr>
+        <tr><td>Beyond 20 yards</td><td class="num">660</td><td class="num">4.2%</td><td class="num">2.3%</td><td class="num">+2.0</td></tr>
+      </table>
+    </div>
+    <p>Perfect on average, wrong everywhere underneath, because the errors cancel. <strong>Log loss is a sum over individual rows and has no concept of "counter attack",</strong> so an underestimate here and an overestimate there are worth exactly the same to it as getting both right.</p>
+  </section>
+
+  <section>
+    <h2>The five minutes</h2>
+    <p class="sub">Five slides. Say the italics out loud until they are yours</p>
+
+    <div class="beat">
+      <span class="clock">0:30</span>
+      <div>
+        <h4>Slide 1 &middot; The task, stated technically</h4>
+        <p class="say">"Given one shot, output the probability it's a goal. In training the input is a matrix of shots and a 0/1 label, and the output is a weight vector. At deployment the input is one shot's features, scaled with the stored training statistics, and the output is one number between 0 and 1. No threshold, no label. The probability is the product."</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <span class="clock">1:15</span>
+      <div>
+        <h4>Slide 2 &middot; Why it is worth asking</h4>
+        <p class="say">"An xG model can't know if a shot goes in. Two identical chances end differently and neither is a mistake. What it's for is calibration: of the chances it calls 0.30, about 30% should go in. But it's trained on log loss over individual binary outcomes. Those aren't the same objective, and this project is about where they come apart."</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <span class="clock">2:15</span>
+      <div>
+        <h4>Slide 3 &middot; H, L, A on one slide</h4>
+        <p>Hypothesis space: every function <code>σ(w·x + b)</code>. Criterion: cross entropy plus L2, not on the bias. Algorithm: full-batch gradient descent, <code>(1/n)Xᵀ(σ(Xw) − y) + 2λw</code>.</p>
+        <p class="say">"I started from the perceptron. Wrong output type, it gives a hard label, and shot data isn't separable so it never converges. Keep the same hypothesis space, change the criterion and the algorithm, and you have logistic regression."</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <span class="clock">3:45</span>
+      <div>
+        <h4>Slide 4 &middot; The subgroup table. Your two minutes.</h4>
+        <p class="say">"Overall bias is +0.0001, which is the most misleading number in my report. Counter attacks are underrated by six points, crosses by four, long shots overrated by two. Log loss is a sum over rows, so those errors cancel in the objective while both being wrong in the only way a coach would care about. You can't find this in the loss. You find it by grouping residuals along dimensions the model never saw."</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <span class="clock">4:40</span>
+      <div>
+        <h4>Slide 5 &middot; Evidence, then stop</h4>
+        <p>Point at three things and then close. Within 0.010 of StatsBomb. Accuracy 91.1% against 90.3% for modelling nothing. Squared error made calibration 50% worse while barely changing ranking.</p>
+        <p class="say">"Next step is putting the grouping into the criterion: a squared group-bias penalty, so the loss contains what the evaluation measures."</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h4>Baits to plant</h4>
+      <p>Say these and the questions come to you, not at you.</p>
+      <ul>
+        <li>"The most misleading number in my report is the one that looks perfect."</li>
+        <li>"I trained the same model on the wrong loss function on purpose."</li>
+        <li>"Two shots had no goalkeeper in the freeze frame, and deleting them would have been a mistake."</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions, answered</h2>
+    <p class="sub">Roughly in order of how likely they are</p>
+
+    <div class="qa">
+      <p class="q">How many features does your final model have?</p>
+      <p class="a"><strong>35, plus a bias.</strong> Two geometry, four situation flags, three body part, two shot type, eleven for what created the chance, nine for phase of play, four from the freeze frame. Answer it instantly. Li uses this exact question to catch people who did not build their own project.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why logistic regression and not a neural net or gradient boosting?</p>
+      <p class="a">Two reasons. 7,451 shots with 663 goals means the effective sample size is set by the positives, so a high-capacity model mostly fits noise. And the project is about the criterion, so I needed a model where behaviour is attributable to the loss rather than to capacity. The honest cost is that every interaction has to be hand-built, and that is most of the remaining gap to StatsBomb.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why cross entropy rather than squared error?</p>
+      <p class="a">It is a proper scoring rule, so in expectation it is minimised when the predicted probability equals the true one. And its gradient does not vanish when the model is confidently wrong. <strong>I tested that:</strong> same model on squared error gave 0.2657 against 0.2568, and calibration error 0.0373 against 0.0245.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why does that vanishing actually happen?</p>
+      <p class="a">The sigmoid saturates. Out at 3.8% it is almost flat, so pushing <code>z</code> barely moves <code>p</code>. Squared error's gradient carries that flatness through as a <code>p(1−p)</code> factor, so the update goes quiet exactly where the model is most wrong. Cross entropy's slope is <code>−1/p</code>, which blows up at the same rate, so the two cancel and what is left is plain error times input.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why don't you penalise the bias?</p>
+      <p class="a">The bias sets the base rate. Shrinking it drags every prediction towards 0.5, and goals happen 9% of the time.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why split by match rather than by shot?</p>
+      <p class="a">Shots in one match share a keeper, a pitch, a scoreline and a defensive shape, so they are not independent draws. Splitting by shot puts near-copies on both sides of the fence and the test estimate comes out flattering. That is leakage.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Your accuracy is barely above the baseline. Isn't that bad?</p>
+      <p class="a">It is the point. Predicting "no goal" every time scores 90.3%. A metric where modelling nothing captures almost all of the score is not measuring the thing. That is why I judge on log loss, Brier and calibration.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Why 0.5 for the learning rate?</p>
+      <p class="a">Empirical. I tried a few and watched the loss curves. There is a principled bound involving the largest eigenvalue of the Hessian and I did not compute it. What I can say is the loss decreased monotonically and my solution agrees with sklearn's LBFGS to 0.0074 on the largest weight. <strong>This is in my implementation log as a stated knowledge gap.</strong></p>
+    </div>
+
+    <div class="qa">
+      <p class="q">How do you know your gradient is right?</p>
+      <p class="a">Central differences against the analytic gradient on random data, maximum relative error 4.55e-10. It runs in the notebook every time. A wrong gradient still trains, it just trains to the wrong place, so the check is not optional.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Did AI write this?</p>
+      <p class="a">Yes, and section 4.2 of my log says exactly what it did. It wrote the download boilerplate, the plotting and the pandas grouping, and it suggested the Murphy decomposition and the point-in-triangle test. It also handed me a version that fitted the standardiser before the split, which is leakage, and I caught it. The xG framing and the calibration question are mine.</p>
+    </div>
+
+    <div class="note">
+      <h4>When you don't know</h4>
+      <p>Li has said in writing that this is worth half credit: <strong>"I don't know. I used it because X and I verified it by Y, but I haven't derived it myself."</strong> A confident waffle is worth zero. Four things known properly beats a paragraph memorised.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tuesday morning</h2>
+    <p class="sub">Have these open before you join, not after</p>
+    <ul class="check">
+      <li>Slides, five of them, already full screen on the screen you will share</li>
+      <li>The Colab notebook in a tab, <strong>already run</strong>, outputs visible. A safety net for "show me the gradient function", not the presentation</li>
+      <li>Bullet prompts on a second screen or printed. Prompts, not a script, because the questions will not come in your order</li>
+      <li>Photo ID on the desk</li>
+      <li>Phone silent, timer visible, water within reach</li>
+    </ul>
+    <h3>How it runs</h3>
+    <p>Zoom, groups of six, identity checked. You are Presenter 1 so you go first with nobody to learn from. Five minutes, chair cuts you off at seven, then around ten minutes of questions from peers and the tutor. The whole thing is over fifteen minutes after you start.</p>
+    <p>Afterwards you grade the other five on task definition, implementation, and evaluation. <strong>Straight "poor" or straight "excellent" across the board gets thrown out and penalises you.</strong> One specific sentence per criterion naming something they actually did. Upload within 24 hours.</p>
+    <div class="note grasp">
+      <h4>What you are actually graded on</h4>
+      <p>Not the quality of the project, that is A2. A3 is communication, handling questions, and the quality of the feedback you give others. Clear and concise beats clever.</p>
+    </div>
+  </section>
+
+  <footer>
+    Sean Woods &middot; 26107565 &middot; xG from scratch &middot; github.com/seanw00ds/xg-from-scratch
+  </footer>
+
+</div>
