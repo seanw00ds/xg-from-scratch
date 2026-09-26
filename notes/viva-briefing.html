@@ -31,7 +31,6 @@
       --ink-faint: #74827A;
       --rule: #2A352F;
       --pitch: #57C39D;
-      --pitch-soft: #16302810;
       --pitch-soft: #14291F;
       --chalk: #79B1E0;
       --chalk-soft: #17252F;
@@ -339,25 +338,29 @@
     <h2>The weekend plan</h2>
     <p class="sub">Saturday 26 September</p>
     <div class="plan">
+      <div class="slot">
+        <span class="when">Done</span>
+        <span class="what">Ethics essay submitted, A2 finished, slides built<em>Machine Learning is the only thing left this weekend.</em></span>
+      </div>
       <div class="slot urgent">
-        <span class="when">Today<br>2 hrs</span>
-        <span class="what">Ethics essay draft<em>1500 words, 30%, due Monday night, not started. This is the real risk in your week, not the viva.</em></span>
+        <span class="when">Tonight</span>
+        <span class="what">Submit A2, then email Nicole Zhuo<em>Queue position for the practice defence is set by your last submission time, so do not resubmit afterwards.</em></span>
       </div>
       <div class="slot">
-        <span class="when">Today<br>1 hr</span>
-        <span class="what">This page, twice<em>Once to read, once to say the five concepts out loud without looking.</em></span>
+        <span class="when">Tonight<br>1 hr</span>
+        <span class="what">This page, then say the three ideas out loud<em>Loss versus error, which weight moves, calibration versus resolution. Without looking.</em></span>
       </div>
       <div class="slot">
-        <span class="when">Sunday<br>3 hrs</span>
-        <span class="what">Finish Ethics, build 5 slides<em>Slides are four headings and one table. Half an hour, not three.</em></span>
+        <span class="when">Sunday<br>1 hr</span>
+        <span class="what">Rehearse the five minutes against a timer, twice<em>If you run past 5:30, cut slide 3. Never cut slide 4.</em></span>
       </div>
       <div class="slot">
         <span class="when">Monday</span>
-        <span class="what">Submit A2 and the essay, then rehearse<em>Time yourself twice. If you run past 5:30, cut the model slide, not the subgroup slide.</em></span>
+        <span class="what">One more run through the questions<em>Especially the three you are most likely to be asked: feature count, why cross entropy, why split by match.</em></span>
       </div>
       <div class="slot">
-        <span class="when">Tuesday<br>morning</span>
-        <span class="what">Open everything 15 minutes early<em>Notebook already run, slides up, notes on a second screen, ID on the desk.</em></span>
+        <span class="when">Tuesday<br>early</span>
+        <span class="what">Everything open 15 minutes before<em>Notebook already run, slides full screen, notes on a second screen, ID on the desk.</em></span>
       </div>
     </div>
     <div class="note warn">
@@ -445,7 +448,7 @@
     <p class="sub">Not memorised. Understood, so you can say them two different ways</p>
 
     <h3>1. Loss says how bad. Error says which way.</h3>
-    <p>Modrić hits one from 27 yards. Your model said <strong>3.8%</strong>. It went in.</p>
+    <p>Modri&#263; hits one from 27 yards. Your model said <strong>3.8%</strong>. It went in.</p>
     <ul>
       <li><strong>Loss</strong> = <code>−ln(0.038)</code> = <strong>3.274</strong>. Big, because the model claimed that was unlikely and it happened. Always positive. It cannot tell you which way to move, only that you are hurting.</li>
       <li><strong>Error</strong> = <code>p − y</code> = <code>0.038 − 1</code> = <strong>−0.962</strong>. Negative, which by the way the subtraction is written means <em>too low</em>. So push up.</li>
@@ -463,6 +466,7 @@
         <tr><td>body_part=Head</td><td class="num">0 (right foot)</td><td class="num">0.000</td><td>untouched</td></tr>
       </table>
     </div>
+    <p class="sub" style="margin:-10px 0 14px">M2 (distance and angle) on the Modri&#263; shot. The fourth row is a feature from M4, shown to make the zero-update point.</p>
     <p>That last row is the answer to "how does it know". <strong>A feature that is zero contributes nothing, so its weight does not move.</strong> The header weight only ever learns from headers, the counter-attack weight only from counters. Each dial quietly accumulates evidence from the shots that involve it.</p>
 
     <h3>3. Calibration and resolution, via the weather</h3>
@@ -502,7 +506,7 @@
         <tr><th>Fact</th><th>Value</th></tr>
         <tr><td>Features in the final model</td><td class="num"><b>35 + bias</b></td></tr>
         <tr><td>Shots, goals, base rate</td><td class="num"><b>7,451 &middot; 663 &middot; 8.9%</b></td></tr>
-        <tr><td>Matches, tournaments</td><td class="num">314 &middot; 6</td></tr>
+        <tr><td>Matches with shots, tournaments</td><td class="num">312 &middot; 6</td></tr>
         <tr><td>Learning rate, iterations to converge</td><td class="num"><b>0.5 &middot; 501</b></td></tr>
         <tr><td>Gradient check error</td><td class="num">4.55e-10</td></tr>
         <tr><td>Reliability, M1 → M4</td><td class="num">0.0013 → 0.0008</td></tr>
@@ -547,7 +551,7 @@
       <span class="clock">2:15</span>
       <div>
         <h4>Slide 3 &middot; H, L, A on one slide</h4>
-        <p>Hypothesis space: every function <code>σ(w·x + b)</code>. Criterion: cross entropy plus L2, not on the bias. Algorithm: full-batch gradient descent, <code>(1/n)Xᵀ(σ(Xw) − y) + 2λw</code>.</p>
+        <p>Hypothesis space: every function <code>σ(w·x + b)</code>. Criterion: cross entropy plus L2, not on the bias. Algorithm: full-batch gradient descent, <code>(1/n)X&#7488;(&sigma;(Xw) &minus; y) + 2&lambda;w</code>, bias row of the penalty zeroed.</p>
         <p class="say">"I started from the perceptron. Wrong output type, it gives a hard label, and shot data isn't separable so it never converges. Keep the same hypothesis space, change the criterion and the algorithm, and you have logistic regression."</p>
       </div>
     </div>
@@ -575,7 +579,7 @@
       <ul>
         <li>"The most misleading number in my report is the one that looks perfect."</li>
         <li>"I trained the same model on the wrong loss function on purpose."</li>
-        <li>"Two shots had no goalkeeper in the freeze frame, and deleting them would have been a mistake."</li>
+        <li>"Two shots had no goalkeeper in the freeze frame, and deleting them would have been a mistake." <b>The facts:</b> one was scored, one was blocked. A missing keeper usually means he is nowhere near his goal, so I imputed him onto his line and added a flag.</li>
       </ul>
     </div>
   </section>
@@ -586,7 +590,7 @@
 
     <div class="qa">
       <p class="q">How many features does your final model have?</p>
-      <p class="a"><strong>35, plus a bias.</strong> Two geometry, four situation flags, three body part, two shot type, eleven for what created the chance, nine for phase of play, four from the freeze frame. Answer it instantly. Li uses this exact question to catch people who did not build their own project.</p>
+      <p class="a"><strong>35, plus a bias.</strong> Two geometry, four situation flags, three body part, two shot type, eleven for what created the chance, eight for phase of play, five from the freeze frame. Answer it instantly. Li uses this exact question to catch people who did not build their own project.</p>
     </div>
 
     <div class="qa">
@@ -602,6 +606,11 @@
     <div class="qa">
       <p class="q">Why does that vanishing actually happen?</p>
       <p class="a">The sigmoid saturates. Out at 3.8% it is almost flat, so pushing <code>z</code> barely moves <code>p</code>. Squared error's gradient carries that flatness through as a <code>p(1−p)</code> factor, so the update goes quiet exactly where the model is most wrong. Cross entropy's slope is <code>−1/p</code>, which blows up at the same rate, so the two cancel and what is left is plain error times input.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">Reliability improved from 0.0013 to 0.0008, so didn't the features buy calibration after all?</p>
+      <p class="a">Fair challenge, and the two calibration numbers in my report move in opposite directions. Reliability improved by 0.0005 while ECE went slightly the other way, 0.0237 to 0.0245. Both moves are tiny next to resolution, which gained 0.0042. So the claim I stand behind is the one about magnitudes: <strong>calibration was already close to free and barely moved either way, while resolution is what the features actually bought.</strong> Reliability is a squared measure and ECE is an absolute one over quantile bins, so on 1,509 shots they can easily disagree on sign while agreeing that nothing much happened.</p>
     </div>
 
     <div class="qa">
@@ -621,7 +630,7 @@
 
     <div class="qa">
       <p class="q">Why 0.5 for the learning rate?</p>
-      <p class="a">Empirical. I tried a few and watched the loss curves. There is a principled bound involving the largest eigenvalue of the Hessian and I did not compute it. What I can say is the loss decreased monotonically and my solution agrees with sklearn's LBFGS to 0.0074 on the largest weight. <strong>This is in my implementation log as a stated knowledge gap.</strong></p>
+      <p class="a">Empirical. I tried a few and watched the loss curves. There is a principled bound involving the largest eigenvalue of the Hessian and I did not compute it. What I can say is the loss decreased monotonically and the largest disagreement between my weights and sklearn's LBFGS, across all of them, is 0.0074. <strong>This is in my implementation log as a stated knowledge gap.</strong></p>
     </div>
 
     <div class="qa">
@@ -652,7 +661,7 @@
     </ul>
     <h3>How it runs</h3>
     <p>Zoom, groups of six, identity checked. You are Presenter 1 so you go first with nobody to learn from. Five minutes, chair cuts you off at seven, then around ten minutes of questions from peers and the tutor. The whole thing is over fifteen minutes after you start.</p>
-    <p>Afterwards you grade the other five on task definition, implementation, and evaluation. <strong>Straight "poor" or straight "excellent" across the board gets thrown out and penalises you.</strong> One specific sentence per criterion naming something they actually did. Upload within 24 hours.</p>
+    <p>Afterwards you grade the other five on task definition, implementation, and evaluation. <strong>Straight "poor" or straight "excellent" across the board is removed unless you argue it substantially, and the ranker gets penalised for it.</strong> One specific sentence per criterion naming something they actually did. The Canvas page says to upload within 24 hours of your session; the spec itself only says your final mark depends on when your comments land, so do it the same day.</p>
     <div class="note grasp">
       <h4>What you are actually graded on</h4>
       <p>Not the quality of the project, that is A2. A3 is communication, handling questions, and the quality of the feedback you give others. Clear and concise beats clever.</p>

@@ -155,7 +155,7 @@
 <div class="slide">
   <p class="eyebrow">31005 Machine Learning &middot; A2 &middot; Sean Woods 26107565</p>
   <h1>Expected goals from scratch</h1>
-  <p class="lead">Logistic regression built by hand, and what log loss does not measure.<br>7,451 shots &middot; 314 matches &middot; six international tournaments</p>
+  <p class="lead">Logistic regression built by hand, and what log loss does not measure.<br>7,451 shots &middot; 312 matches &middot; six international tournaments</p>
   <div class="cols" style="margin-top:6mm">
     <div class="io">
       <h3>Training</h3>
@@ -206,7 +206,7 @@
       </div>
       <div class="row">
         <span class="letter">A</span>
-        <span class="what">Full-batch gradient descent<em><span class="mono">&nabla;L = (1/n) X&#7488;(&sigma;(Xw) &minus; y) + 2&lambda;w</span> &middot; converged in 501 steps at &eta; = 0.5</em></span>
+        <span class="what">Full-batch gradient descent<em><span class="mono">&nabla;L = (1/n) X&#7488;(&sigma;(Xw) &minus; y) + 2&lambda;w</span>, with the bias row of that penalty set to zero &middot; converged in 501 steps at &eta; = 0.5</em></span>
       </div>
     </div>
     <div>
@@ -255,7 +255,7 @@
         <tr><td>M2 + angle</td><td class="n">2</td><td class="n">0.2740</td><td class="n">0.0280</td><td class="n">90.6%</td></tr>
         <tr><td>M3 + situation</td><td class="n">30</td><td class="n">0.2599</td><td class="n">0.0302</td><td class="n">91.0%</td></tr>
         <tr class="hi"><td>M4 + freeze frame</td><td class="n">35</td><td class="n">0.2568</td><td class="n">0.0245</td><td class="n">91.1%</td></tr>
-        <tr class="ref"><td>StatsBomb commercial</td><td class="n">&mdash;</td><td class="n">0.2472</td><td class="n">0.0194</td><td class="n">90.9%</td></tr>
+        <tr class="ref"><td>StatsBomb commercial</td><td class="n">n/a</td><td class="n">0.2472</td><td class="n">0.0194</td><td class="n">90.9%</td></tr>
         <tr><td>M4 on squared error</td><td class="n">35</td><td class="n">0.2657</td><td class="n">0.0373</td><td class="n">90.9%</td></tr>
       </table>
     </div>
@@ -266,5 +266,5 @@
       <p style="margin-top:6mm"><b>Next:</b> put the grouping into the criterion. A squared group-bias penalty, so the loss contains what the evaluation measures.</p>
     </div>
   </div>
-  <div class="foot"><span>Features bought resolution (0.0083 &rarr; 0.0125), not reliability (0.0013 &rarr; 0.0008)</span><span>5 / 5</span></div>
+  <div class="foot"><span>Resolution gained 0.0042. Reliability moved 0.0005, and was already near zero</span><span>5 / 5</span></div>
 </div>

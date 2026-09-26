@@ -2,3 +2,5 @@
 __pycache__/
 .ipynb_checkpoints/
 report/A2_report.html
+.DS_Store
+report/slides_embedded.html

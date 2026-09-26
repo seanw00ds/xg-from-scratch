@@ -86,10 +86,12 @@ def main(row_index=None):
     loss = -(y * np.log(p) + (1 - y) * np.log(1 - p))
     print(f"  y = {int(y)}, so the loss is {'-ln(p)' if y == 1 else '-ln(1-p)'}"
           f" = {loss:.3f}")
-    for guess in [0.01, 0.05, 0.145, 0.3, 0.5, 0.9, 0.99]:
+    # p itself goes in the list, so the row marked as the model's answer is the
+    # model's answer rather than whichever hard-coded guess happens to be near it.
+    for guess in sorted([0.01, 0.05, 0.3, 0.5, 0.9, 0.99, p]):
         l = -(y * np.log(guess) + (1 - y) * np.log(1 - guess))
-        mark = "  <-- what it actually said" if abs(guess - p) < 0.02 else ""
-        print(f"     had it said {guess:5.2f}, loss would be {l:6.3f}{mark}")
+        mark = "  <-- what it actually said" if guess == p else ""
+        print(f"     had it said {guess:5.3f}, loss would be {l:6.3f}{mark}")
 
     print("\n" + "=" * 66)
     print("STEP 7.  THE GRADIENT  (which way should each weight move)")

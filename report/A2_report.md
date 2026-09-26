@@ -58,7 +58,7 @@ Sharpness is the model's willingness to move away from the base rate. A model th
 
 ### 2.3 Data
 
-StatsBomb Open Data, six men's senior international tournaments: the 2018 and 2022 World Cups, the 2020 and 2024 Euros, the 2024 Copa América and the 2023 AFCON. That is 314 matches and 7,451 shots, of which 663 were goals, a base rate of 8.9%.
+StatsBomb Open Data, six men's senior international tournaments: the 2018 and 2022 World Cups, the 2020 and 2024 Euros, the 2024 Copa América and the 2023 AFCON. That is 314 match files, 312 of which contain shot events, giving 7,451 shots, of which 663 were goals, a base rate of 8.9%.
 
 I kept the population narrow on purpose. Mixing men's and women's football, or 1970s and modern matches, would mean fitting one model to several different games and then being unable to say which one the output describes.
 
@@ -221,7 +221,7 @@ Fit the model separately per competition and compare the weights, to test whethe
 
 **One hot columns that did not match between splits.** The first run crashed with a shape mismatch, 29 columns against 30. The cause was that I was reading the categories off whichever split I happened to be encoding, and a rare assist type appeared in training but not in test. That silently changes the input space of the model between fit and predict. The fix was to derive the level list once from the training split and pass it through to every other split, so the columns are always the same columns in the same order. Worth noting that this would not have crashed if the missing level had been the last column of a wider matrix, it would just have produced wrong answers, which is the more dangerous version of the same bug.
 
-**Two shots with no goalkeeper in the freeze frame.** These produced NaN, which spread through the whole M4 model and turned every metric into NaN. Dropping the rows was tempting and would have been wrong, because both of those shots were goals. A keeper missing from the frame usually means he is nowhere near his goal. I imputed the keeper onto his line in the centre of the goal and added a binary flag recording that he was missing, so the information survives instead of being deleted.
+**Two shots with no goalkeeper in the freeze frame.** These produced NaN, which spread through the whole M4 model and turned every metric into NaN. Dropping the rows was tempting and would have been wrong. A keeper missing from the frame usually means he is nowhere near his goal, and one of the two shots was scored while the other was blocked, so the pair is not something I can dismiss as noise in either direction. I imputed the keeper onto his line in the centre of the goal and added a binary flag recording that he was missing, so the information survives instead of being deleted.
 
 **A degenerate calibration table.** The base rate baseline predicts the same number for every shot, so the quantile bin edges all collapsed to one value and the binning code returned an empty table, which then failed on a missing column. Fixed by detecting the case and putting everything in a single bin. Minor, but it is the kind of thing that only shows up because I bothered to evaluate the trivial baseline.
 
@@ -235,7 +235,7 @@ I used Claude throughout, which the subject encourages. The honest account of wh
 
 **Where I pushed back.** Its first suggestion for the project was a churn or housing prices dataset, which is the kind of thing a marker sees forty times. The xG framing and the calibration research question came from me knowing the sport well enough to know that the interesting part of xG is not whether it predicts goals, because it cannot, but whether the numbers are honest.
 
-**What I checked rather than trusted.** The gradient derivation I did on paper first and then checked numerically, so the code agreeing with Claude was never the evidence. Every metric I wrote from scratch is cross checked against scikit-learn in the notebook, and my full gradient descent solution is compared against sklearn's LBFGS solver on the same objective, which agrees to 0.0074 in the largest weight. That comparison is also the reason I can claim convergence rather than assume it.
+**What I checked rather than trusted.** The gradient derivation I did on paper first and then checked numerically, so the code agreeing with Claude was never the evidence. Every metric I wrote from scratch is cross checked against scikit-learn in the notebook, and my full gradient descent solution is compared against sklearn's LBFGS solver on the same objective, where the largest disagreement across all the weights is 0.0074. That comparison is also the reason I can claim convergence rather than assume it.
 
 **Where using it cost me something.** The first version of the feature code it produced fitted the standardiser on the whole dataset before splitting. That is leakage, it is subtle, and it would have inflated my test results in a way I might not have noticed. I caught it because splitting before any statistic is computed is a rule I already had in my head from the validation lecture. That is the actual lesson about AI assistance in this subject. It produces code that runs, and running is not the same as correct, so the only protection is knowing what the code is supposed to be doing before you read it.
 

@@ -100,7 +100,8 @@ Penalties are removed. A penalty is the same shot every time, it is scored about
 recognising "the ball is on the spot" rather than learning anything about open
 play.
 
-The cell below downloads and parses roughly 314 matches. It takes a few minutes.
+The cell below downloads and parses 314 match files, 312 of which turn out to
+contain shot events. It takes a few minutes.
 """)
 
 code(Path("scripts/build_dataset.py").read_text().split('if __name__')[0].replace(

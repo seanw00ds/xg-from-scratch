@@ -79,9 +79,9 @@ def build_features(df, feature_set, levels=None):
         cols["n_opponents_in_frame"] = df["n_opponents_in_frame"].to_numpy(float)
         # How far off his line the keeper is, and how far he has drifted from
         # the middle of the goal. Two shots in 7451 have no keeper in the
-        # frame at all, which is itself information (both were goals), so
-        # rather than drop them I put the keeper on his line in the middle of
-        # the goal and let a flag carry the fact that he was missing.
+        # frame at all, which is itself information (one was scored, one
+        # blocked), so rather than drop them I put the keeper on his line in
+        # the middle of the goal and let a flag carry the fact he was missing.
         keeper = df[["keeper_x", "keeper_y"]].to_numpy(float)
         missing = np.isnan(keeper[:, 0]) | np.isnan(keeper[:, 1])
         kx = np.where(missing, 120.0, keeper[:, 0])
