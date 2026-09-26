@@ -37,6 +37,10 @@ blockquote { margin: 10pt 0; padding: 6pt 12pt; border-left: 3px solid #888;
 img { max-width: 92%; display: block; margin: 10pt auto 2pt; }
 img + em, p > em:only-child { display: block; text-align: center;
                               font-size: 8.5pt; color: #555; margin-bottom: 12pt; }
+/* Submission URLs must sit on one unbroken line: the spec asks for plain text
+   and a line-wrapped link is easy to copy wrongly. */
+p.url { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 7.4pt;
+        word-break: break-all; margin: 6pt 0 12pt; }
 hr { border: none; border-top: 1px solid #ddd; margin: 16pt 0; }
 """
 
@@ -57,6 +61,7 @@ def embed_images(html):
 def main():
     text = SRC.read_text()
     body = markdown.markdown(text, extensions=["tables", "fenced_code", "sane_lists"])
+    body = re.sub(r'<p>(https?://\S+)</p>', r'<p class="url">\1</p>', body)
     body = embed_images(body)
     HTML.write_text(f"<!doctype html><html><head><meta charset='utf-8'>"
                     f"<style>{CSS}</style></head><body>{body}</body></html>")

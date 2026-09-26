@@ -7,7 +7,7 @@ the code blocks below are the code that produced every number in the report.
 import json
 from pathlib import Path
 
-NB = "notebook/xg_logistic_regression.ipynb"
+NB = "xg.ipynb"
 
 cells = []
 
@@ -704,7 +704,6 @@ nb = {
     "nbformat_minor": 0,
 }
 
-Path("notebook").mkdir(exist_ok=True)
 Path(NB).write_text(json.dumps(nb, indent=1))
 print(f"wrote {NB}: {len(cells)} cells "
       f"({sum(c['cell_type'] == 'code' for c in cells)} code)")

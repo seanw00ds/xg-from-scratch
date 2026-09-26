@@ -11,7 +11,7 @@
 
 Google Colab notebook (publicly accessible, self contained, downloads its own data):
 
-https://colab.research.google.com/github/seanw00ds/xg-from-scratch/blob/main/notebook/xg_logistic_regression.ipynb
+https://colab.research.google.com/github/seanw00ds/xg-from-scratch/blob/main/xg.ipynb
 
 Source repository:
 
