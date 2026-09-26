@@ -155,11 +155,11 @@
 <div class="slide">
   <p class="eyebrow">31005 Machine Learning &middot; A2 &middot; Sean Woods 26107565</p>
   <h1>Expected goals from scratch</h1>
-  <p class="lead">Logistic regression built by hand, and what log loss does not measure.<br>7,451 shots &middot; 312 matches &middot; six international tournaments</p>
+  <p class="lead">Logistic regression built by hand, and what log loss does not measure.<br>7,509 shots &middot; 314 matches &middot; six international tournaments</p>
   <div class="cols" style="margin-top:6mm">
     <div class="io">
       <h3>Training</h3>
-      <p><b>In:</b> <span class="mono">X</span>, 4,444 shots &times; 35 features. <span class="mono">y</span> in {0,1}, 1 = scored.</p>
+      <p><b>In:</b> <span class="mono">X</span>, 4,435 shots &times; 35 features. <span class="mono">y</span> in {0,1}, 1 = scored.</p>
       <p><b>Out:</b> <span class="mono">w</span>, 35 weights plus a bias. Plus the training mean and sd of every feature.</p>
     </div>
     <div class="io">
@@ -215,7 +215,7 @@
       <p><span class="tag">verified</span> analytic gradient vs central differences: max relative error <span class="mono">4.55e&minus;10</span></p>
     </div>
   </div>
-  <div class="foot"><span>Split by match, never by shot &middot; 187 train / 62 val / 63 test</span><span>3 / 5</span></div>
+  <div class="foot"><span>Split by match, never by shot &middot; 188 train / 62 val / 64 test</span><span>3 / 5</span></div>
 </div>
 
 <!-- 4 -->
@@ -226,17 +226,18 @@
     <div>
       <table>
         <tr><th>Situation</th><th>Shots</th><th>Model</th><th>Really</th><th>Gap</th></tr>
-        <tr><td>All shots</td><td class="n">1,509</td><td class="n">9.69%</td><td class="n">9.68%</td><td class="n">+0.0</td></tr>
-        <tr class="hi"><td>Counter attacks</td><td class="n">55</td><td class="n">15.8%</td><td class="n">21.8%</td><td class="n">&minus;6.0</td></tr>
-        <tr class="hi"><td>From a cross</td><td class="n">270</td><td class="n">12.9%</td><td class="n">17.0%</td><td class="n">&minus;4.2</td></tr>
-        <tr><td>Beyond 20 yds</td><td class="n">660</td><td class="n">4.2%</td><td class="n">2.3%</td><td class="n">+2.0</td></tr>
+        <tr><td>All shots</td><td class="n">1,532</td><td class="n">9.29%</td><td class="n">9.33%</td><td class="n">&minus;0.0</td></tr>
+        <tr class="hi"><td>Counter attacks</td><td class="n">69</td><td class="n">15.1%</td><td class="n">21.7%</td><td class="n">&minus;6.7</td></tr>
+        <tr><td>Free kicks</td><td class="n">64</td><td class="n">2.8%</td><td class="n">6.3%</td><td class="n">&minus;3.5</td></tr>
+        <tr><td>From a cross</td><td class="n">252</td><td class="n">15.2%</td><td class="n">12.3%</td><td class="n">+2.9</td></tr>
+        <tr><td>Beyond 20 yds</td><td class="n">687</td><td class="n">4.2%</td><td class="n">2.9%</td><td class="n">+1.3</td></tr>
       </table>
       <div class="pull">Log loss is a sum over rows. It has <b>no concept of "counter attack"</b>, so an underestimate here and an overestimate there are worth the same to it as getting both right.</div>
       <p>You cannot find this in the loss. You find it by grouping residuals along dimensions the model never saw.</p>
     </div>
     <figure>
       <img src="../results/fig5_subgroup_bias.png" alt="Subgroup bias">
-      <figcaption>Mean predicted xG minus observed rate. Overall bias is +0.0001. None of these are.</figcaption>
+      <figcaption>Mean predicted xG minus observed rate. Overall bias is &minus;0.0004. None of these are.</figcaption>
     </figure>
   </div>
   <div class="foot"><span>A team that scores on transitions would be told its chances are worth less than they are</span><span>4 / 5</span></div>
@@ -250,21 +251,21 @@
     <div>
       <table>
         <tr><th>Model</th><th>Features</th><th>Log loss</th><th>ECE</th><th>Accuracy</th></tr>
-        <tr><td>M0 base rate</td><td class="n">0</td><td class="n">0.3182</td><td class="n">0.0074</td><td class="n">90.3%</td></tr>
-        <tr><td>M1 distance</td><td class="n">1</td><td class="n">0.2783</td><td class="n">0.0237</td><td class="n">90.3%</td></tr>
-        <tr><td>M2 + angle</td><td class="n">2</td><td class="n">0.2740</td><td class="n">0.0280</td><td class="n">90.6%</td></tr>
-        <tr><td>M3 + situation</td><td class="n">30</td><td class="n">0.2599</td><td class="n">0.0302</td><td class="n">91.0%</td></tr>
-        <tr class="hi"><td>M4 + freeze frame</td><td class="n">35</td><td class="n">0.2568</td><td class="n">0.0245</td><td class="n">91.1%</td></tr>
-        <tr class="ref"><td>StatsBomb commercial</td><td class="n">n/a</td><td class="n">0.2472</td><td class="n">0.0194</td><td class="n">90.9%</td></tr>
-        <tr><td>M4 on squared error</td><td class="n">35</td><td class="n">0.2657</td><td class="n">0.0373</td><td class="n">90.9%</td></tr>
+        <tr><td>M0 base rate</td><td class="n">0</td><td class="n">0.3103</td><td class="n">0.0032</td><td class="n">90.7%</td></tr>
+        <tr><td>M1 distance</td><td class="n">1</td><td class="n">0.2792</td><td class="n">0.0187</td><td class="n">90.7%</td></tr>
+        <tr><td>M2 + angle</td><td class="n">2</td><td class="n">0.2774</td><td class="n">0.0181</td><td class="n">90.7%</td></tr>
+        <tr><td>M3 + situation</td><td class="n">30</td><td class="n">0.2605</td><td class="n">0.0156</td><td class="n">91.0%</td></tr>
+        <tr class="hi"><td>M4 + freeze frame</td><td class="n">35</td><td class="n">0.2584</td><td class="n">0.0193</td><td class="n">90.8%</td></tr>
+        <tr class="ref"><td>StatsBomb commercial</td><td class="n">n/a</td><td class="n">0.2481</td><td class="n">0.0125</td><td class="n">91.2%</td></tr>
+        <tr><td>M4 on squared error</td><td class="n">35</td><td class="n">0.2668</td><td class="n">0.0311</td><td class="n">91.0%</td></tr>
       </table>
     </div>
     <div>
-      <p><b>1.</b> Sixty lines of NumPy land within <b>0.010</b> log loss of a commercial model trained on millions of shots.</p>
-      <p><b>2.</b> Predicting "no goal" every time scores <b>90.3%</b> accuracy. Accuracy is not measuring the task.</p>
-      <p><b>3.</b> Changing only the criterion to squared error made calibration <b>50% worse</b> while barely moving the ranking. The <span class="mono">p(1&minus;p)</span> factor survives and the update stalls where the model is most wrong.</p>
+      <p><b>1.</b> Sixty lines of NumPy land within <b>0.011</b> log loss of a commercial model trained on millions of shots.</p>
+      <p><b>2.</b> Predicting "no goal" every time scores <b>90.7%</b> accuracy. M3 beats M4 on it. Accuracy is not measuring the task.</p>
+      <p><b>3.</b> Changing only the criterion to squared error made calibration <b>61% worse</b> while barely moving the ranking. The <span class="mono">p(1&minus;p)</span> factor survives and the update stalls where the model is most wrong.</p>
       <p style="margin-top:6mm"><b>Next:</b> put the grouping into the criterion. A squared group-bias penalty, so the loss contains what the evaluation measures.</p>
     </div>
   </div>
-  <div class="foot"><span>Resolution gained 0.0042. Reliability moved 0.0005, and was already near zero</span><span>5 / 5</span></div>
+  <div class="foot"><span>Resolution doubled, 0.0059 to 0.0123. Reliability sat still at 0.0006 and 0.0007</span><span>5 / 5</span></div>
 </div>

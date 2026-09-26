@@ -1487,6 +1487,34 @@ match_id,competition,player,team,minute,period,x,y,body_part,technique,shot_type
 7541,World Cup 2018,Carlos Arturo Bacca Ahumada,Colombia,77,2,109.0,31.0,Right Foot,Normal,Open Play,From Corner,0,0,0,0,11,1,118.0,38.0,None,None,0.07248526,Blocked,0
 7541,World Cup 2018,Oscar Fabián Murillo Murillo,Colombia,77,2,111.0,42.0,Head,Normal,Open Play,From Corner,0,0,0,0,9,1,118.0,40.0,Cross,High Pass,0.08330989,Wayward,0
 7541,World Cup 2018,Yūya Ōsako,Japan,81,2,108.0,43.0,Head,Normal,Open Play,Regular Play,0,0,0,0,7,0,119.0,41.0,Cross,High Pass,0.13071316,Wayward,0
+8655,World Cup 2018,Eden Hazard,Belgium,14,1,109.0,23.0,Left Foot,Normal,Open Play,Regular Play,0,1,0,0,8,0,119.0,39.0,Regular,Low Pass,0.02582844,Off T,0
+8655,World Cup 2018,Blaise Matuidi,France,17,1,92.0,38.0,Left Foot,Half Volley,Open Play,From Throw In,1,0,0,0,10,1,117.0,40.0,None,None,0.024187952,Saved,0
+8655,World Cup 2018,Eden Hazard,Belgium,18,1,107.0,21.0,Right Foot,Normal,Open Play,Regular Play,0,1,0,0,10,0,119.0,39.0,Cross,High Pass,0.012269703,Blocked,0
+8655,World Cup 2018,Toby Alderweireld,Belgium,21,1,105.0,41.0,Left Foot,Normal,Open Play,From Corner,0,0,0,0,10,1,119.0,40.0,Recovery,Ground Pass,0.103834964,Saved,0
+8655,World Cup 2018,Olivier Giroud,France,22,1,103.0,48.0,Left Foot,Normal,Open Play,Regular Play,1,0,0,0,6,0,113.0,40.0,Regular,High Pass,0.27923512,Off T,0
+8655,World Cup 2018,Olivier Giroud,France,30,1,108.0,44.0,Head,Normal,Open Play,From Free Kick,0,0,0,0,10,1,118.0,40.0,Regular,High Pass,0.08539717,Off T,0
+8655,World Cup 2018,Olivier Giroud,France,31,1,107.0,32.0,Left Foot,Normal,Open Play,Regular Play,1,0,0,0,7,0,117.0,37.0,Cross,Ground Pass,0.13975486,Wayward,0
+8655,World Cup 2018,Antoine Griezmann,France,32,1,98.0,30.0,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,9,1,118.0,38.0,None,None,0.039881397,Off T,0
+8655,World Cup 2018,Olivier Giroud,France,33,1,109.0,36.0,Left Foot,Normal,Open Play,Regular Play,1,1,0,0,5,0,119.0,39.0,Cross,Ground Pass,0.16416734,Off T,0
+8655,World Cup 2018,Antoine Griezmann,France,36,1,91.0,32.0,Left Foot,Normal,Open Play,From Counter,0,0,0,0,8,0,116.0,39.0,Regular,Ground Pass,0.026532186,Off T,0
+8655,World Cup 2018,Antoine Griezmann,France,38,1,96.0,50.0,Left Foot,Normal,Open Play,Regular Play,0,0,0,0,10,0,118.0,40.0,Regular,Ground Pass,0.028874304,Blocked,0
+8655,World Cup 2018,Benjamin Pavard,France,38,1,114.0,53.0,Right Foot,Normal,Open Play,Regular Play,1,0,0,0,9,0,117.0,47.0,Regular,Ground Pass,0.07446188,Saved,0
+8655,World Cup 2018,Blaise Matuidi,France,41,1,105.0,30.0,Head,Normal,Open Play,Regular Play,0,1,0,0,9,0,116.0,39.0,Regular,High Pass,0.10427744,Wayward,0
+8655,World Cup 2018,Antoine Griezmann,France,44,1,96.0,57.0,Left Foot,Normal,Free Kick,From Free Kick,0,0,0,0,11,0,118.0,39.0,None,None,0.028889349,Blocked,0
+8655,World Cup 2018,Romelu Lukaku Menama,Belgium,47,2,111.0,40.0,Head,Normal,Open Play,Regular Play,0,1,0,0,8,0,119.0,40.0,Regular,High Pass,0.1676629,Off T,0
+8655,World Cup 2018,Olivier Giroud,France,50,2,107.0,31.0,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,9,0,119.0,40.0,Regular,Ground Pass,0.09775021,Blocked,0
+8655,World Cup 2018,Samuel Yves Umtiti,France,50,2,118.0,47.0,Head,Normal,Open Play,From Corner,0,1,0,0,9,0,119.0,44.0,Corner,High Pass,0.0802673,Goal,1
+8655,World Cup 2018,Blaise Matuidi,France,55,2,99.0,30.0,Left Foot,Normal,Open Play,Regular Play,0,0,0,0,6,1,119.0,41.0,Regular,Ground Pass,0.05599482,Blocked,0
+8655,World Cup 2018,Olivier Giroud,France,55,2,112.0,34.0,Left Foot,Normal,Open Play,Regular Play,0,0,0,0,6,1,116.0,38.0,Regular,Ground Pass,0.10079972,Blocked,0
+8655,World Cup 2018,Toby Alderweireld,Belgium,57,2,93.0,60.0,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,9,0,117.0,41.0,Regular,Ground Pass,0.006324989,Off T,0
+8655,World Cup 2018,Kevin De Bruyne,Belgium,60,2,107.0,38.0,Right Foot,Volley,Open Play,Regular Play,0,0,0,0,8,2,118.0,40.0,None,None,0.07526151,Wayward,0
+8655,World Cup 2018,Marouane Fellaini-Bakkioui,Belgium,64,2,108.0,40.0,Head,Normal,Open Play,From Throw In,0,0,0,0,9,0,118.0,40.0,Cross,High Pass,0.12076645,Off T,0
+8655,World Cup 2018,Olivier Giroud,France,66,2,100.0,32.0,Left Foot,Normal,Open Play,Regular Play,1,0,0,0,6,1,119.0,40.0,Regular,Ground Pass,0.047261972,Off T,0
+8655,World Cup 2018,Kevin De Bruyne,Belgium,75,2,95.0,34.0,Left Foot,Normal,Open Play,From Free Kick,0,0,0,0,10,1,118.0,39.0,Regular,Ground Pass,0.037019253,Off T,0
+8655,World Cup 2018,Paul Pogba,France,78,2,108.0,42.0,Head,Normal,Open Play,From Free Kick,0,0,0,0,9,2,119.0,42.0,Cross,High Pass,0.06375324,Off T,0
+8655,World Cup 2018,Axel Witsel,Belgium,80,2,91.0,27.0,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,10,1,118.0,40.0,None,None,0.017900085,Saved,0
+8655,World Cup 2018,Antoine Griezmann,France,92,2,103.0,46.0,Right Foot,Normal,Open Play,Regular Play,1,0,0,0,6,1,118.0,42.0,Regular,Ground Pass,0.084246874,Saved,0
+8655,World Cup 2018,Corentin Tolisso,France,95,2,107.0,31.0,Left Foot,Normal,Open Play,From Throw In,0,0,0,0,6,0,118.0,40.0,Regular,Ground Pass,0.15595363,Saved,0
 8657,World Cup 2018,Thomas Meunier,Belgium,3,1,113.0,41.0,Right Foot,Volley,Open Play,Regular Play,1,0,0,0,6,0,118.0,40.0,Cross,High Pass,0.31685346,Goal,1
 8657,World Cup 2018,Raheem Sterling,England,11,1,100.0,53.0,Left Foot,Normal,Open Play,From Throw In,0,0,0,0,8,0,117.0,43.0,Regular,High Pass,0.044181537,Blocked,0
 8657,World Cup 2018,Kevin De Bruyne,Belgium,11,1,108.0,29.0,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,8,0,118.0,38.0,None,None,0.05882345,Saved,0
@@ -5890,6 +5918,36 @@ match_id,competition,player,team,minute,period,x,y,body_part,technique,shot_type
 3939990,Copa America 2024,Christian Pulisic,United States,91,2,95.1,35.1,Right Foot,Normal,Open Play,Regular Play,0,1,0,0,9,0,117.7,40.2,Regular,Ground Pass,0.032206345,Blocked,0
 3939990,Copa America 2024,Christian Pulisic,United States,91,2,108.9,51.3,Right Foot,Normal,Open Play,From Counter,0,1,0,0,9,0,117.7,43.7,Cross,Ground Pass,0.050065216,Off T,0
 3939990,Copa America 2024,Malik Tillman,United States,94,2,102.7,46.2,Right Foot,Half Volley,Open Play,From Throw In,0,0,0,0,10,2,117.9,42.1,None,None,0.05603719,Blocked,0
+3939983,Copa America 2024,Lucas Tolentino Coelho de Lima,Brazil,1,1,108.4,33.0,Left Foot,Half Volley,Open Play,Regular Play,1,0,0,0,7,0,118.8,36.8,Cross,Low Pass,0.17851116,Wayward,0
+3939983,Copa America 2024,João Victor Gomes da Silva,Brazil,5,1,94.6,44.0,Right Foot,Normal,Open Play,From Throw In,0,0,0,0,10,1,119.1,40.3,Regular,Ground Pass,0.031334206,Off T,0
+3939983,Copa America 2024,Julio César Enciso Espínola,Paraguay,8,1,114.3,17.3,Right Foot,Normal,Open Play,From Corner,0,0,0,0,11,0,119.1,37.2,Corner,Ground Pass,0.0072615123,Off T,0
+3939983,Copa America 2024,Damián Josué Bobadilla Benítez,Paraguay,14,1,94.0,43.5,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,9,1,118.5,41.5,Regular,Ground Pass,0.038246736,Saved,0
+3939983,Copa America 2024,Alex Adrián Arce Barrios,Paraguay,16,1,97.7,31.5,Right Foot,Normal,Open Play,From Keeper,0,1,0,0,10,1,117.9,38.7,None,None,0.025406407,Blocked,0
+3939983,Copa America 2024,Danilo Luiz da Silva,Brazil,17,1,112.8,43.6,Head,Normal,Open Play,From Corner,0,1,0,0,10,1,119.0,41.1,Corner,High Pass,0.07658868,Wayward,0
+3939983,Copa America 2024,Alex Adrián Arce Barrios,Paraguay,18,1,50.9,32.5,Right Foot,Normal,Open Play,From Throw In,0,1,0,0,11,0,112.6,40.4,None,None,0.0030637213,Wayward,0
+3939983,Copa America 2024,Marcos Aoás Corrêa,Brazil,22,1,114.7,40.1,Head,Normal,Open Play,From Corner,0,1,0,0,10,1,119.4,40.2,Corner,High Pass,0.16580674,Off T,0
+3939983,Copa America 2024,Damián Josué Bobadilla Benítez,Paraguay,28,1,107.4,35.1,Right Foot,Normal,Open Play,From Free Kick,0,1,0,0,9,0,118.4,37.9,None,None,0.08076446,Saved,0
+3939983,Copa America 2024,Lucas Tolentino Coelho de Lima,Brazil,29,1,98.8,29.3,Left Foot,Normal,Open Play,From Keeper,1,0,0,0,9,1,118.6,37.9,Regular,Ground Pass,0.03615988,Blocked,0
+3939983,Copa America 2024,Vinícius José Paixão de Oliveira Júnior,Brazil,34,1,109.7,48.2,Right Foot,Normal,Open Play,From Throw In,0,0,0,0,9,0,111.7,46.6,None,None,0.30474883,Goal,1
+3939983,Copa America 2024,Julio César Enciso Espínola,Paraguay,39,1,102.0,27.1,Right Foot,Normal,Open Play,Regular Play,0,1,0,0,9,1,118.7,38.8,Regular,Ground Pass,0.035751253,Blocked,0
+3939983,Copa America 2024,Mathías Adalberto Villasanti Rolón,Paraguay,39,1,111.2,39.3,Right Foot,Backheel,Open Play,Regular Play,0,0,0,0,9,0,119.1,39.5,None,None,0.2560726,Off T,0
+3939983,Copa America 2024,Bruno Guimarães Rodriguez Moura,Brazil,42,1,99.5,40.4,Right Foot,Half Volley,Open Play,Regular Play,1,0,0,0,10,0,114.5,40.0,None,None,0.06899372,Post,0
+3939983,Copa America 2024,Rodrygo Silva de Goes,Brazil,42,1,112.6,29.0,Left Foot,Normal,Open Play,Regular Play,0,1,0,0,9,0,118.9,36.3,None,None,0.15510158,Saved,0
+3939983,Copa America 2024,Sávio Moreira de Oliveira,Brazil,42,1,116.3,44.7,Left Foot,Half Volley,Open Play,Regular Play,1,0,1,0,9,0,117.4,38.7,None,None,0.59045523,Goal,1
+3939983,Copa America 2024,Damián Josué Bobadilla Benítez,Paraguay,44,1,94.1,40.2,Right Foot,Normal,Open Play,From Kick Off,0,1,0,0,8,1,118.6,39.3,None,None,0.032009777,Saved,0
+3939983,Copa America 2024,Vinícius José Paixão de Oliveira Júnior,Brazil,49,1,114.7,32.6,Right Foot,Normal,Open Play,Regular Play,1,0,0,0,7,0,118.5,36.7,None,None,0.3122415,Goal,1
+3939983,Copa America 2024,Julio César Enciso Espínola,Paraguay,47,2,92.7,28.3,Right Foot,Normal,Free Kick,From Free Kick,0,0,0,0,11,3,118.4,40.6,None,None,0.041077945,Blocked,0
+3939983,Copa America 2024,Omar Federico Alderete Fernández,Paraguay,47,2,92.9,47.3,Left Foot,Half Volley,Open Play,From Free Kick,0,0,0,0,11,1,118.8,40.6,None,None,0.022854283,Goal,1
+3939983,Copa America 2024,Julio César Enciso Espínola,Paraguay,50,2,103.8,18.7,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,8,0,118.7,36.7,Regular,Ground Pass,0.008530369,Saved,0
+3939983,Copa America 2024,Rodrygo Silva de Goes,Brazil,54,2,89.8,47.8,Right Foot,Normal,Free Kick,From Free Kick,0,0,0,0,11,1,118.7,41.7,None,None,0.033093035,Saved,0
+3939983,Copa America 2024,Omar Federico Alderete Fernández,Paraguay,55,2,80.4,25.3,Left Foot,Normal,Open Play,Regular Play,0,0,0,0,11,0,117.6,39.1,Regular,Ground Pass,0.0049011013,Wayward,0
+3939983,Copa America 2024,Sávio Moreira de Oliveira,Brazil,62,2,102.1,52.4,Left Foot,Normal,Open Play,From Throw In,0,0,0,0,10,1,117.8,43.2,Regular,Ground Pass,0.041420687,Blocked,0
+3939983,Copa America 2024,Miguel Ángel Almirón Rejala,Paraguay,66,2,93.2,48.1,Left Foot,Normal,Open Play,From Kick Off,0,1,0,0,11,1,119.1,40.0,Regular,Ground Pass,0.032701593,Saved,0
+3939983,Copa America 2024,Bruno Guimarães Rodriguez Moura,Brazil,67,2,98.1,46.4,Right Foot,Normal,Open Play,From Throw In,0,0,0,0,8,2,117.1,41.2,None,None,0.054258883,Blocked,0
+3939983,Copa America 2024,Víctor Gustavo Velázquez Ramos,Paraguay,70,2,108.6,35.9,Head,Normal,Open Play,From Free Kick,0,0,0,0,11,0,119.2,39.2,Cross,High Pass,0.05688724,Off T,0
+3939983,Copa America 2024,Vinícius José Paixão de Oliveira Júnior,Brazil,72,2,103.2,26.5,Left Foot,Normal,Open Play,From Goal Kick,1,0,0,0,7,0,115.1,38.8,None,None,0.098521225,Off T,0
+3939983,Copa America 2024,Fabián Cornelio Balbuena González,Paraguay,84,2,106.9,46.0,Head,Normal,Open Play,From Free Kick,0,0,0,0,11,0,118.7,39.7,Free Kick,High Pass,0.046146944,Off T,0
+3939983,Copa America 2024,Raphael Dias Belloli,Brazil,90,2,106.5,56.6,Left Foot,Normal,Open Play,From Corner,0,0,0,0,10,1,117.7,43.6,None,None,0.033454493,Blocked,0
 3939972,Copa America 2024,Darwin Daniel Machís Marcano,Venezuela,10,1,90.9,50.1,Left Foot,Normal,Open Play,From Free Kick,0,1,0,0,10,2,118.0,41.5,None,None,0.017812079,Blocked,0
 3939972,Copa America 2024,John Yeboah Zamora,Ecuador,11,1,99.0,33.2,Left Foot,Normal,Open Play,From Free Kick,0,0,0,0,8,0,117.5,38.9,None,None,0.058614414,Saved,0
 3939972,Copa America 2024,José Salomón Rondón Giménez,Venezuela,12,1,95.6,44.7,Right Foot,Normal,Open Play,Regular Play,0,0,0,0,8,1,118.2,40.7,Regular,Ground Pass,0.03622315,Off T,0

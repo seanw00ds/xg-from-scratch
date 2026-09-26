@@ -58,7 +58,7 @@ Sharpness is the model's willingness to move away from the base rate. A model th
 
 ### 2.3 Data
 
-StatsBomb Open Data, six men's senior international tournaments: the 2018 and 2022 World Cups, the 2020 and 2024 Euros, the 2024 Copa América and the 2023 AFCON. That is 314 match files, 312 of which contain shot events, giving 7,451 shots, of which 663 were goals, a base rate of 8.9%.
+StatsBomb Open Data, six men's senior international tournaments: the 2018 and 2022 World Cups, the 2020 and 2024 Euros, the 2024 Copa América and the 2023 AFCON. That is 314 matches and 7,509 shots, of which 668 were goals, a base rate of 8.9%.
 
 I kept the population narrow on purpose. Mixing men's and women's football, or 1970s and modern matches, would mean fitting one model to several different games and then being unable to say which one the output describes.
 
@@ -90,7 +90,7 @@ The bias is left out of the penalty deliberately. The bias is what sets the mode
 
 I derived this by hand before writing it. The sigmoid's derivative and the logarithm's derivative cancel, which is why the whole thing collapses to error times input. That cancellation is the reason cross entropy and the sigmoid are paired so often.
 
-7,451 shots is small, so full batch costs nothing and the loss curve comes out smooth. Mini batch would add noise I would then have to explain.
+7,509 shots is small, so full batch costs nothing and the loss curve comes out smooth. Mini batch would add noise I would then have to explain.
 
 **Features.** Four nested sets, each adding one block, so the results table reads as a controlled experiment instead of one jump from nothing to everything.
 
@@ -101,33 +101,33 @@ I derived this by hand before writing it. The sigmoid's derivative and the logar
 
 All features are standardised using the training mean and standard deviation. Without it, distance runs from 0 to 100 and a binary flag runs from 0 to 1, so a single learning rate is either far too big for one or far too small for the other.
 
-**Validation scheme.** Splits are by match, never by shot. Shots from the same game share a keeper, a pitch, a scoreline and a defensive shape, so they are not independent draws. If some shots from a match sit in training and the rest sit in test, the test set is no longer fresh and the number it reports is flattering. Whole matches move together: 187 matches to train, 62 to validate, 63 to test.
+**Validation scheme.** Splits are by match, never by shot. Shots from the same game share a keeper, a pitch, a scoreline and a defensive shape, so they are not independent draws. If some shots from a match sit in training and the rest sit in test, the test set is no longer fresh and the number it reports is flattering. Whole matches move together: 188 matches to train, 62 to validate, 64 to test.
 
-The L2 strength is chosen by five fold cross validation inside the training matches, again splitting by match. I report the standard deviation across folds as well as the mean, because a difference smaller than the spread between folds is not a result. That turned out to matter. The gap between the best and worst L2 for M2 is 0.007 while the fold to fold spread is 0.021, so for that model the choice of penalty is not doing much of anything, and I say so rather than dressing it up.
+The L2 strength is chosen by five fold cross validation inside the training matches, again splitting by match. I report the standard deviation across folds as well as the mean, because a difference smaller than the spread between folds is not a result. That turned out to matter. For M2 the best and worst L2 differ by 0.008 in cross validated log loss while the fold to fold spread is 0.016, so for that model the choice of penalty is doing almost nothing, and I say so rather than dressing it up.
 
 The test matches were used once, at the end.
 
 ### 2.5 Results
 
-All figures are on the 63 test matches, 1,509 shots, 146 goals.
+All figures are on the 64 test matches, 1,532 shots, 143 goals.
 
 | Model | Log loss | Brier | ECE | Reliability | Resolution | ROC-AUC | Avg precision | Accuracy |
 |---|---|---|---|---|---|---|---|---|
-| M0 base rate | 0.3182 | 0.0874 | 0.0074 | 0.0001 | 0.0000 | 0.500 | 0.105 | 90.3% |
-| M1 distance | 0.2783 | 0.0798 | 0.0237 | 0.0013 | 0.0083 | 0.768 | 0.297 | 90.3% |
-| M2 + angle | 0.2740 | 0.0780 | 0.0280 | 0.0012 | 0.0094 | 0.777 | 0.303 | 90.6% |
-| M3 + situation | 0.2599 | 0.0734 | 0.0302 | 0.0013 | 0.0120 | 0.811 | 0.396 | 91.0% |
-| **M4 + freeze frame** | **0.2568** | **0.0729** | **0.0245** | **0.0008** | **0.0125** | **0.812** | **0.393** | **91.1%** |
-| StatsBomb xG | 0.2472 | 0.0709 | 0.0194 | 0.0010 | 0.0151 | 0.827 | 0.418 | 90.9% |
-| M4 on squared error | 0.2657 | 0.0742 | 0.0373 | 0.0018 | 0.0126 | 0.809 | 0.390 | 90.9% |
+| M0 base rate | 0.3103 | 0.0846 | 0.0032 | 0.0000 | 0.0000 | 0.500 | 0.098 | 90.7% |
+| M1 distance | 0.2792 | 0.0788 | 0.0187 | 0.0006 | 0.0059 | 0.738 | 0.248 | 90.7% |
+| M2 + angle | 0.2774 | 0.0782 | 0.0181 | 0.0006 | 0.0060 | 0.745 | 0.251 | 90.7% |
+| M3 + situation | 0.2605 | 0.0733 | 0.0156 | 0.0003 | 0.0104 | 0.782 | 0.343 | 91.0% |
+| **M4 + freeze frame** | **0.2584** | **0.0733** | **0.0193** | **0.0007** | **0.0123** | **0.797** | **0.350** | **90.8%** |
+| StatsBomb xG | 0.2481 | 0.0692 | 0.0125 | 0.0002 | 0.0130 | 0.803 | 0.405 | 91.2% |
+| M4 on squared error | 0.2668 | 0.0744 | 0.0311 | 0.0017 | 0.0110 | 0.789 | 0.347 | 91.0% |
 
-StatsBomb's own xG is in that table as a benchmark. It is a commercial model trained on millions of shots with features I do not have, including shot height and a goalkeeper positioning model. M4 lands within 0.010 log loss of it, which is the number that tells me the pipeline is sound.
+StatsBomb's own xG is in that table as a benchmark. It is a commercial model trained on millions of shots with features I do not have, including shot height and a goalkeeper positioning model. M4 lands within 0.011 log loss of it, which is the number that tells me the pipeline is sound.
 
-**Accuracy is worthless here, and the table is the proof.** Predicting "no goal" for every shot scores 90.3%. My best model scores 91.1%. A metric where refusing to model anything captures almost all of the available score is not measuring the thing I care about. This is class imbalance doing what it always does, and it is why log loss, Brier and the calibration measures carry the argument instead.
+**Accuracy is worthless here, and the table is the proof.** Predicting "no goal" for every shot scores 90.7%. My best model scores 90.8%, and M3, which is worse on every metric I actually care about, scores higher still at 91.0%. A metric where refusing to model anything captures almost all of the available score is not measuring the thing I care about. This is class imbalance doing what it always does, and it is why log loss, Brier and the calibration measures carry the argument instead.
 
-**The weights make football sense.** In standardised units, angle comes out at +0.40 and distance at −0.39, so they are close to equally important and pull in opposite directions, which is what you would expect. Defenders in the cone is next at −0.22. Keeper off his line is +0.18, so a keeper caught up the pitch raises the chance, again correct. Headers carry a negative weight even after distance is accounted for, which matches the fact that a header is a worse contact than a foot. Nothing in the top of that list is surprising, and that is the point. A model this simple whose weights disagreed with football would be a model with a bug.
+**The weights make football sense.** In standardised units, distance comes out at −0.40 and angle at +0.39, so they are close to equally important and pull in opposite directions, which is what you would expect. Keeper off his line is next at +0.20, so a keeper caught up the pitch raises the chance. Defenders in the cone is −0.18, and being under pressure is −0.16. Headers carry a negative weight even after distance is accounted for, which matches the fact that a header is a worse contact than a foot. Nothing in the top of that list is surprising, and that is the point. A model this simple whose weights disagreed with football would be a model with a bug.
 
-**Convergence.** Gradient descent converged in 501 iterations for M4 at a learning rate of 0.5, with the stopping rule triggering on a change in loss below 1e-9. The validation curve sits almost on top of the training curve. That closeness is the generalisation gap drawn out, and it is small because the hypothesis space is small. Thirty five features of linear capacity cannot memorise 4,444 shots even if the optimiser wanted to.
+**Convergence.** Gradient descent converged in 501 iterations for M4 at a learning rate of 0.5, with the stopping rule triggering on a change in loss below 1e-9. The validation curve sits almost on top of the training curve. That closeness is the generalisation gap drawn out, and it is small because the hypothesis space is small. Thirty five features of linear capacity cannot memorise 4,435 shots even if the optimiser wanted to.
 
 ![Convergence of gradient descent for each feature set, training and validation log loss](../results/fig1_convergence.png)
 
@@ -137,7 +137,7 @@ StatsBomb's own xG is in that table as a benchmark. It is a commercial model tra
 
 *Figure 2. Reliability diagram on the test matches. Points on the dotted line mean the stated probability matched the observed rate in that bin.*
 
-**Calibration and sharpness move separately.** This is the main result. Going from M1 to M4, reliability barely moves, from 0.0013 to 0.0008, while resolution climbs steadily from 0.0083 to 0.0125. The extra features bought sharpness, not honesty.
+**Calibration and sharpness move separately.** This is the main result. Going from M1 to M4, reliability sits still at 0.0006 and 0.0007, while resolution more than doubles, from 0.0059 to 0.0123. ECE is flat too, 0.0187 against 0.0193. The extra features bought sharpness, not honesty.
 
 There is a structural reason. The model has a bias term and the criterion is a proper scoring rule, so gradient descent drives the average prediction to the base rate almost regardless of what the other weights do. Average calibration is close to free. Telling a 0.40 chance from a 0.05 chance is the part you pay for.
 
@@ -159,7 +159,7 @@ Same hypothesis space, same optimiser, same features, same L2, only the loss cha
 
 That `p(1−p)` term is the sigmoid's own derivative. Cross entropy cancels it and squared error does not. When the model is confidently wrong, say `p` near 1 while the shot was missed, `p(1−p)` is near zero, so the gradient nearly vanishes exactly where the error is largest. The update goes quiet when it should be loudest.
 
-The experiment agrees. Trained on squared error, the same model gets worse log loss (0.2657 against 0.2568), worse Brier, and calibration error over 50% higher (0.0373 against 0.0245). It also drifts high, predicting a mean of 0.109 on shots that went in at 0.097. Ranking is almost unchanged, ROC-AUC 0.809 against 0.812. The choice of criterion cost almost nothing in the ability to sort chances, and cost a lot in the honesty of the numbers on them, which for xG is the whole product.
+The experiment agrees. Trained on squared error, the same model gets worse log loss (0.2668 against 0.2584), worse Brier, and calibration error 61% higher (0.0311 against 0.0193). It also drifts high, predicting a mean of 0.106 on shots that went in at 0.093. Ranking is barely touched, ROC-AUC 0.789 against 0.797. The choice of criterion cost almost nothing in the ability to sort chances, and cost a lot in the honesty of the numbers on them, which for xG is the whole product.
 
 ---
 
@@ -167,37 +167,36 @@ The experiment agrees. Trained on squared error, the same model gets worse log l
 
 ### 3.1 Where the loss stops serving the objective
 
-M4's overall bias is +0.0001. Mean predicted xG 0.0969 against an observed rate of 0.0968. On paper that is flawless.
+M4's overall bias is −0.0004. Mean predicted xG 0.0929 against an observed rate of 0.0933. On paper that is as good as it gets.
 
 It is also an average, and an average can be right while every part underneath it is wrong.
 
 | Group | Shots | Predicted | Observed | Gap |
 |---|---|---|---|---|
-| All shots | 1,509 | 9.69% | 9.68% | +0.0 pp |
-| Counter attacks | 55 | 15.8% | 21.8% | **−6.0 pp** |
-| From a cross | 270 | 12.9% | 17.0% | **−4.2 pp** |
-| Inside 12 yards | 394 | 18.4% | 21.1% | −2.7 pp |
-| Free kicks | 65 | 2.3% | 4.6% | −2.4 pp |
-| Beyond 20 yards | 660 | 4.2% | 2.3% | **+2.0 pp** |
-| Headers | 259 | 12.7% | 13.5% | −0.8 pp |
+| All shots | 1,532 | 9.29% | 9.33% | −0.0 pp |
+| Counter attacks | 69 | 15.1% | 21.7% | **−6.7 pp** |
+| Free kicks | 64 | 2.8% | 6.3% | **−3.5 pp** |
+| From a cross | 252 | 15.2% | 12.3% | **+2.9 pp** |
+| Inside 12 yards | 368 | 17.4% | 19.0% | −1.6 pp |
+| Beyond 20 yards | 687 | 4.2% | 2.9% | +1.3 pp |
+| 12 to 20 yards | 477 | 10.3% | 11.1% | −0.8 pp |
+| Headers | 267 | 11.3% | 12.0% | −0.7 pp |
 
-The model systematically underrates chances from counter attacks and crosses, and overrates long shots. Those errors cancel in the total, which is exactly why the total looked perfect.
-
-![Subgroup bias of the M4 model](../results/fig5_subgroup_bias.png)
-
-*Figure 5. Mean predicted xG minus observed goal rate, by situation. The overall bias is zero. None of these are.*
+The model systematically underrates chances from counter attacks and free kicks, and overrates crosses and long shots. Those errors cancel in the total, which is exactly why the total looked perfect.
 
 This is the answer to the research question, and it is not an accident of this dataset. Log loss is a sum over individual rows. It has no concept of "counter attack" as a category, so a systematic underestimate in one situation and a matching overestimate in another are worth the same to the objective as getting both right. The criterion is blind to the grouping the user cares about. There is nothing in the loss that could detect it.
 
 The cost is real. A side that presses high and scores in transition would be told its chances are worth less than they are, and judged by xG it would look like it was overperforming and due to regress, when in fact the model just cannot see what makes those chances good. The freeze frame count helps, but it is a still photograph. It cannot tell a settled back four from four defenders sprinting back at their own goal, and that is the entire difference between a counter attack and a normal attack.
 
-Detecting it takes something the loss does not provide. I grouped the test predictions along football dimensions the model never saw as features, and compared predicted against observed in each group. The counter attack row is 55 shots, so I treat it as strong evidence rather than proof, and the cross row at 270 shots is firmer. The honest reading is that the direction is consistent and the mechanism is explainable, so it is worth acting on even though the sample is thin.
+Detecting it takes something the loss does not provide. I grouped the test predictions along football dimensions the model never saw as features, and compared predicted against observed in each group.
+
+**How much of this is noise.** Not all of it is equally solid, and I know that because of an accident. An earlier version of my dataset was missing two matches, lost to download failures I had not noticed. On that dataset the counter attack gap was −6.0 points and crosses came out at −4.2, underrated. Recovering those two matches, about 0.8% more data, left counter attacks where they were but flipped the sign on crosses to +2.9. A finding that changes direction when you add 58 shots is not a finding. So the honest reading is this: the counter attack gap survives, it is the largest effect, it has a mechanism I can name, and it is stable across both versions of the data. Everything below about three points on a few hundred shots is inside the noise and I do not claim it. Free kicks at 64 shots are suggestive at best.
 
 ### 3.2 Limitations
 
 The hypothesis space is linear in the features, so every interaction has to be built by hand. A cross to the back post and a cross cut back to the penalty spot are the same event to this model. That single restriction explains most of the remaining gap to StatsBomb, whose gradient boosted trees get interactions without being asked.
 
-7,451 shots with 663 goals is not a lot. The effective sample size for a rare class is set by the positives, not the rows.
+7,509 shots with 668 goals is not a lot. The effective sample size for a rare class is set by the positives, not the rows, and the subgroup analysis above shows what that costs: a group of 250 shots cannot settle a three point difference in rate.
 
 International tournament football is its own population. Deploying this model on a youth or amateur match without refitting would be a mistake, because the base rate and the finishing quality are both different, and the bias term alone encodes the base rate of the training data.
 
@@ -221,9 +220,13 @@ Fit the model separately per competition and compare the weights, to test whethe
 
 **One hot columns that did not match between splits.** The first run crashed with a shape mismatch, 29 columns against 30. The cause was that I was reading the categories off whichever split I happened to be encoding, and a rare assist type appeared in training but not in test. That silently changes the input space of the model between fit and predict. The fix was to derive the level list once from the training split and pass it through to every other split, so the columns are always the same columns in the same order. Worth noting that this would not have crashed if the missing level had been the last column of a wider matrix, it would just have produced wrong answers, which is the more dangerous version of the same bug.
 
+**Two matches that silently went missing.** This is the one that nearly cost me. My download loop caught exceptions per match, printed a warning to stderr and carried on with an empty list, so two matches lost to transient SSL timeouts just quietly vanished. I only noticed because I ran the notebook end to end on a fresh machine and it reported 7,509 shots where my local dataset had 7,451. Every number in an earlier draft of this report came from a dataset two matches short of the one anybody else would get by running my code, and the results and the notebook would not have matched. The fix is three things: retry each download up to four times with backoff, raise rather than continue if it still fails, and assert at the end that the number of matches with shot events equals the number of matches requested. The wider lesson is that a failure that prints a warning and keeps going is worse than one that stops, because the run still produces a plausible looking answer.
+
 **Two shots with no goalkeeper in the freeze frame.** These produced NaN, which spread through the whole M4 model and turned every metric into NaN. Dropping the rows was tempting and would have been wrong. A keeper missing from the frame usually means he is nowhere near his goal, and one of the two shots was scored while the other was blocked, so the pair is not something I can dismiss as noise in either direction. I imputed the keeper onto his line in the centre of the goal and added a binary flag recording that he was missing, so the information survives instead of being deleted.
 
 **A degenerate calibration table.** The base rate baseline predicts the same number for every shot, so the quantile bin edges all collapsed to one value and the binning code returned an empty table, which then failed on a missing column. Fixed by detecting the case and putting everything in a single bin. Minor, but it is the kind of thing that only shows up because I bothered to evaluate the trivial baseline.
+
+**The dataset change moved a result.** Recovering those two matches changed one of my subgroup findings, flipping the bias on shots from crosses from −4.2 points to +2.9. Nothing about the model or the code changed, only 58 extra shots. I have left that in section 3.1 rather than quietly reporting the new number, because it is the clearest evidence I have for how much of a subgroup table on this much data is noise, and it changed which parts of my own conclusion I am willing to defend.
 
 **Convincing myself the gradient was right.** A wrong gradient still trains. It just trains to the wrong place, quietly. I checked mine against central differences on random data and got a maximum relative error of 4.55e-10, which is the level you expect from floating point alone. This check is in the notebook and it runs every time.
 

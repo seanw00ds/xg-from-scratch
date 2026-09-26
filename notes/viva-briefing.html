@@ -435,9 +435,9 @@
     <div class="scroll">
       <table>
         <tr><th>Split</th><th>Matches</th><th>Shots</th><th>What it is for</th></tr>
-        <tr><td><b>Train</b></td><td class="num">187</td><td class="num">4,444</td><td>Fitting the weights. The only data the model learns from</td></tr>
-        <tr><td><b>Validation</b></td><td class="num">62</td><td class="num">1,498</td><td>Watching for overfitting while training, and checking choices</td></tr>
-        <tr><td><b>Test</b></td><td class="num">63</td><td class="num">1,509</td><td>Touched once, at the very end. Every number you report</td></tr>
+        <tr><td><b>Train</b></td><td class="num">188</td><td class="num">4,435</td><td>Fitting the weights. The only data the model learns from</td></tr>
+        <tr><td><b>Validation</b></td><td class="num">62</td><td class="num">1,542</td><td>Watching for overfitting while training, and checking choices</td></tr>
+        <tr><td><b>Test</b></td><td class="num">64</td><td class="num">1,532</td><td>Touched once, at the very end. Every number you report</td></tr>
       </table>
     </div>
     <p>If someone asks why you need all three: the moment you use a set to <em>choose</em> anything, it stops being an honest estimate of performance. Validation gets used for choosing, so test has to stay sealed.</p>
@@ -472,10 +472,10 @@
     <h3>3. Calibration and resolution, via the weather</h3>
     <p>Think of a forecaster.</p>
     <ul>
-      <li><strong>Calibration</strong> (also called reliability, measured by ECE): across every day they said 30%, did it rain about 30% of the time? That is <em>honesty</em>. Yours is <strong>0.0245</strong>, so your stated percentages are off by about two and a half points on average.</li>
-      <li><strong>Resolution</strong> (also called sharpness): do they ever actually commit? A forecaster who says 9% every single day is perfectly honest and totally useless. Yours went from <strong>0.0083 to 0.0125</strong> as features were added.</li>
+      <li><strong>Calibration</strong> (also called reliability, measured by ECE): across every day they said 30%, did it rain about 30% of the time? That is <em>honesty</em>. Yours is <strong>0.0193</strong>, so your stated percentages are off by about two points on average.</li>
+      <li><strong>Resolution</strong> (also called sharpness): do they ever actually commit? A forecaster who says 9% every single day is perfectly honest and totally useless. Yours more than doubled, <strong>0.0059 to 0.0123</strong>, as features were added.</li>
     </ul>
-    <p>Your instinct was right: resolution is putting your money where your mouth is. And your finding in one line: <strong>adding features made the model sharper, not more honest, because honesty was nearly free from the start.</strong></p>
+    <p>Your instinct was right: resolution is putting your money where your mouth is. And your finding in one line: <strong>adding features made the model sharper, not more honest, because honesty was nearly free from the start.</strong> Reliability 0.0006 to 0.0007 and ECE 0.0187 to 0.0193, both flat, while resolution doubled.</p>
     <div class="note grasp">
       <h4>Why honesty was free</h4>
       <p>The model has a bias term, and log loss is a proper scoring rule. Between them, gradient descent drags the <em>average</em> prediction onto the base rate almost regardless of what the other weights do. Telling a 40% chance from a 5% chance is the part you actually pay for.</p>
@@ -488,43 +488,44 @@
     <div class="scroll">
       <table>
         <tr><th>Model</th><th>Features</th><th>Log loss</th><th>ROC-AUC</th><th>Accuracy</th></tr>
-        <tr><td>M0 base rate</td><td class="num">0</td><td class="num">0.3182</td><td class="num">0.500</td><td class="num">90.3%</td></tr>
-        <tr><td>M1 distance</td><td class="num">1</td><td class="num">0.2783</td><td class="num">0.768</td><td class="num">90.3%</td></tr>
-        <tr><td>M2 + angle</td><td class="num">2</td><td class="num">0.2740</td><td class="num">0.777</td><td class="num">90.6%</td></tr>
-        <tr><td>M3 + situation</td><td class="num">30</td><td class="num">0.2599</td><td class="num">0.811</td><td class="num">91.0%</td></tr>
-        <tr class="best"><td>M4 + freeze frame</td><td class="num">35</td><td class="num">0.2568</td><td class="num">0.812</td><td class="num">91.1%</td></tr>
-        <tr><td>StatsBomb commercial</td><td class="num">—</td><td class="num">0.2472</td><td class="num">0.827</td><td class="num">90.9%</td></tr>
-        <tr><td>M4 on squared error</td><td class="num">35</td><td class="num">0.2657</td><td class="num">0.809</td><td class="num">90.9%</td></tr>
+        <tr><td>M0 base rate</td><td class="num">0</td><td class="num">0.3103</td><td class="num">0.500</td><td class="num">90.7%</td></tr>
+        <tr><td>M1 distance</td><td class="num">1</td><td class="num">0.2792</td><td class="num">0.738</td><td class="num">90.7%</td></tr>
+        <tr><td>M2 + angle</td><td class="num">2</td><td class="num">0.2774</td><td class="num">0.745</td><td class="num">90.7%</td></tr>
+        <tr><td>M3 + situation</td><td class="num">30</td><td class="num">0.2605</td><td class="num">0.782</td><td class="num">91.0%</td></tr>
+        <tr class="best"><td>M4 + freeze frame</td><td class="num">35</td><td class="num">0.2584</td><td class="num">0.797</td><td class="num">90.8%</td></tr>
+        <tr><td>StatsBomb commercial</td><td class="num">n/a</td><td class="num">0.2481</td><td class="num">0.803</td><td class="num">91.2%</td></tr>
+        <tr><td>M4 on squared error</td><td class="num">35</td><td class="num">0.2668</td><td class="num">0.789</td><td class="num">91.0%</td></tr>
       </table>
     </div>
     <div class="note warn">
       <h4>Do not get this backwards</h4>
-      <p>Log loss is a punishment, so <strong>lower is better</strong>. StatsBomb's 0.2472 beats your 0.2568. You did <em>not</em> beat them. The claim is: <strong>sixty lines of NumPy, written by hand, lands within 0.010 of a commercial model trained on millions of shots.</strong> That is the impressive version and it is true.</p>
+      <p>Log loss is a punishment, so <strong>lower is better</strong>. StatsBomb's 0.2481 beats your 0.2584. You did <em>not</em> beat them. The claim is: <strong>sixty lines of NumPy, written by hand, lands within 0.011 of a commercial model trained on millions of shots.</strong> That is the impressive version and it is true.</p>
     </div>
     <div class="scroll">
       <table>
         <tr><th>Fact</th><th>Value</th></tr>
         <tr><td>Features in the final model</td><td class="num"><b>35 + bias</b></td></tr>
-        <tr><td>Shots, goals, base rate</td><td class="num"><b>7,451 &middot; 663 &middot; 8.9%</b></td></tr>
-        <tr><td>Matches with shots, tournaments</td><td class="num">312 &middot; 6</td></tr>
+        <tr><td>Shots, goals, base rate</td><td class="num"><b>7,509 &middot; 668 &middot; 8.9%</b></td></tr>
+        <tr><td>Matches, tournaments</td><td class="num">314 &middot; 6</td></tr>
         <tr><td>Learning rate, iterations to converge</td><td class="num"><b>0.5 &middot; 501</b></td></tr>
         <tr><td>Gradient check error</td><td class="num">4.55e-10</td></tr>
-        <tr><td>Reliability, M1 → M4</td><td class="num">0.0013 → 0.0008</td></tr>
-        <tr><td>Resolution, M1 → M4</td><td class="num"><b>0.0083 → 0.0125</b></td></tr>
-        <tr><td>Overall bias, M4</td><td class="num"><b>+0.0001</b></td></tr>
+        <tr><td>Reliability, M1 &rarr; M4</td><td class="num">0.0006 &rarr; 0.0007</td></tr>
+        <tr><td>Resolution, M1 &rarr; M4</td><td class="num"><b>0.0059 &rarr; 0.0123</b></td></tr>
+        <tr><td>Overall bias, M4</td><td class="num"><b>&minus;0.0004</b></td></tr>
       </table>
     </div>
     <h3>The subgroup table, which is the point of the whole project</h3>
     <div class="scroll">
       <table>
         <tr><th>Situation</th><th>Shots</th><th>Model said</th><th>Really</th><th>Gap</th></tr>
-        <tr><td>All shots</td><td class="num">1,509</td><td class="num">9.69%</td><td class="num">9.68%</td><td class="num">+0.0</td></tr>
-        <tr class="best"><td>Counter attacks</td><td class="num">55</td><td class="num">15.8%</td><td class="num">21.8%</td><td class="num">−6.0</td></tr>
-        <tr><td>From a cross</td><td class="num">270</td><td class="num">12.9%</td><td class="num">17.0%</td><td class="num">−4.2</td></tr>
-        <tr><td>Beyond 20 yards</td><td class="num">660</td><td class="num">4.2%</td><td class="num">2.3%</td><td class="num">+2.0</td></tr>
+        <tr><td>All shots</td><td class="num">1,532</td><td class="num">9.29%</td><td class="num">9.33%</td><td class="num">&minus;0.0</td></tr>
+        <tr class="best"><td>Counter attacks</td><td class="num">69</td><td class="num">15.1%</td><td class="num">21.7%</td><td class="num">&minus;6.7</td></tr>
+        <tr><td>Free kicks</td><td class="num">64</td><td class="num">2.8%</td><td class="num">6.3%</td><td class="num">&minus;3.5</td></tr>
+        <tr><td>From a cross</td><td class="num">252</td><td class="num">15.2%</td><td class="num">12.3%</td><td class="num">+2.9</td></tr>
+        <tr><td>Beyond 20 yards</td><td class="num">687</td><td class="num">4.2%</td><td class="num">2.9%</td><td class="num">+1.3</td></tr>
       </table>
     </div>
-    <p>Perfect on average, wrong everywhere underneath, because the errors cancel. <strong>Log loss is a sum over individual rows and has no concept of "counter attack",</strong> so an underestimate here and an overestimate there are worth exactly the same to it as getting both right.</p>
+    <p>Right on average, wrong everywhere underneath, because the errors cancel. <strong>Log loss is a sum over individual rows and has no concept of "counter attack",</strong> so an underestimate here and an overestimate there are worth exactly the same to it as getting both right.</p>
   </section>
 
   <section>
@@ -560,7 +561,7 @@
       <span class="clock">3:45</span>
       <div>
         <h4>Slide 4 &middot; The subgroup table. Your two minutes.</h4>
-        <p class="say">"Overall bias is +0.0001, which is the most misleading number in my report. Counter attacks are underrated by six points, crosses by four, long shots overrated by two. Log loss is a sum over rows, so those errors cancel in the objective while both being wrong in the only way a coach would care about. You can't find this in the loss. You find it by grouping residuals along dimensions the model never saw."</p>
+        <p class="say">"Overall bias is minus 0.0004, which is the most misleading number in my report. Counter attacks are underrated by nearly seven points, free kicks by three and a half, while crosses and long shots are overrated. Log loss is a sum over rows, so those errors cancel in the objective while both being wrong in the only way a coach would care about. You can't find this in the loss. You find it by grouping residuals along dimensions the model never saw."</p>
       </div>
     </div>
 
@@ -568,7 +569,7 @@
       <span class="clock">4:40</span>
       <div>
         <h4>Slide 5 &middot; Evidence, then stop</h4>
-        <p>Point at three things and then close. Within 0.010 of StatsBomb. Accuracy 91.1% against 90.3% for modelling nothing. Squared error made calibration 50% worse while barely changing ranking.</p>
+        <p>Point at three things and then close. Within 0.011 of StatsBomb. Accuracy 90.8% against 90.7% for modelling nothing, and M3 beats M4 on it. Squared error made calibration 61% worse while barely changing ranking.</p>
         <p class="say">"Next step is putting the grouping into the criterion: a squared group-bias penalty, so the loss contains what the evaluation measures."</p>
       </div>
     </div>
@@ -595,12 +596,12 @@
 
     <div class="qa">
       <p class="q">Why logistic regression and not a neural net or gradient boosting?</p>
-      <p class="a">Two reasons. 7,451 shots with 663 goals means the effective sample size is set by the positives, so a high-capacity model mostly fits noise. And the project is about the criterion, so I needed a model where behaviour is attributable to the loss rather than to capacity. The honest cost is that every interaction has to be hand-built, and that is most of the remaining gap to StatsBomb.</p>
+      <p class="a">Two reasons. 7,509 shots with 668 goals means the effective sample size is set by the positives, so a high-capacity model mostly fits noise. And the project is about the criterion, so I needed a model where behaviour is attributable to the loss rather than to capacity. The honest cost is that every interaction has to be hand-built, and that is most of the remaining gap to StatsBomb.</p>
     </div>
 
     <div class="qa">
       <p class="q">Why cross entropy rather than squared error?</p>
-      <p class="a">It is a proper scoring rule, so in expectation it is minimised when the predicted probability equals the true one. And its gradient does not vanish when the model is confidently wrong. <strong>I tested that:</strong> same model on squared error gave 0.2657 against 0.2568, and calibration error 0.0373 against 0.0245.</p>
+      <p class="a">It is a proper scoring rule, so in expectation it is minimised when the predicted probability equals the true one. And its gradient does not vanish when the model is confidently wrong. <strong>I tested that:</strong> same model on squared error gave 0.2668 against 0.2584, and calibration error 0.0311 against 0.0193.</p>
     </div>
 
     <div class="qa">
@@ -609,8 +610,8 @@
     </div>
 
     <div class="qa">
-      <p class="q">Reliability improved from 0.0013 to 0.0008, so didn't the features buy calibration after all?</p>
-      <p class="a">Fair challenge, and the two calibration numbers in my report move in opposite directions. Reliability improved by 0.0005 while ECE went slightly the other way, 0.0237 to 0.0245. Both moves are tiny next to resolution, which gained 0.0042. So the claim I stand behind is the one about magnitudes: <strong>calibration was already close to free and barely moved either way, while resolution is what the features actually bought.</strong> Reliability is a squared measure and ECE is an absolute one over quantile bins, so on 1,509 shots they can easily disagree on sign while agreeing that nothing much happened.</p>
+      <p class="q">How do you know the calibration difference is real and not noise?</p>
+      <p class="a">Fair challenge, and the two calibration numbers in my report move in opposite directions. Reliability moved 0.0001 and ECE 0.0006, both of them flat, while resolution gained 0.0064 and more than doubled. So the claim I stand behind is the one about magnitudes: <strong>calibration was already close to free and barely moved either way, while resolution is what the features actually bought.</strong> Reliability is a squared measure and ECE is an absolute one over quantile bins, so on 1,532 shots they can easily disagree on sign while agreeing that nothing much happened. I also know how fragile these are first hand: recovering two matches I had lost to failed downloads flipped the sign on one of my subgroup results.</p>
     </div>
 
     <div class="qa">
@@ -625,7 +626,7 @@
 
     <div class="qa">
       <p class="q">Your accuracy is barely above the baseline. Isn't that bad?</p>
-      <p class="a">It is the point. Predicting "no goal" every time scores 90.3%. A metric where modelling nothing captures almost all of the score is not measuring the thing. That is why I judge on log loss, Brier and calibration.</p>
+      <p class="a">It is the point. Predicting "no goal" every time scores 90.7%, and M3 scores higher than M4 on it. A metric where modelling nothing captures almost all of the score is not measuring the thing. That is why I judge on log loss, Brier and calibration.</p>
     </div>
 
     <div class="qa">

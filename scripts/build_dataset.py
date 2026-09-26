@@ -7,6 +7,7 @@ Penalties are dropped (fixed situation, not a normal shot).
 import csv
 import json
 import sys
+import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
@@ -31,9 +32,18 @@ FIELDS = [
 ]
 
 
-def fetch(url):
-    with urllib.request.urlopen(url, timeout=60) as r:
-        return json.load(r)
+def fetch(url, attempts=4):
+    """Retry on failure. Without this a transient SSL timeout silently drops a
+    match, the dataset quietly changes size between runs, and the numbers in
+    the report stop matching the numbers anyone else gets."""
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(url, timeout=90) as r:
+                return json.load(r)
+        except Exception:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(2 ** attempt)
 
 
 def pass_info(events):
@@ -92,9 +102,10 @@ def shots_from_match(match):
     mid = match["match_id"]
     try:
         events = fetch(f"{BASE}/events/{mid}.json")
-    except Exception as exc:  # a handful of matches 404 in the open data
-        print(f"  skipped {mid}: {exc}", file=sys.stderr)
-        return []
+    except Exception as exc:
+        # Loud, not silent: a dropped match changes every number downstream.
+        print(f"  FAILED {mid} after retries: {exc}", file=sys.stderr)
+        raise
 
     passes = pass_info(events)
     rows = []
@@ -159,7 +170,11 @@ def main(out_path):
         w.writerows(rows)
 
     goals = sum(r["goal"] for r in rows)
-    print(f"{len(rows)} shots, {goals} goals ({goals / len(rows):.1%}) -> {out_path}")
+    n_matches = len({r["match_id"] for r in rows})
+    print(f"{len(rows)} shots, {goals} goals ({goals / len(rows):.1%}), "
+          f"{n_matches} matches -> {out_path}")
+    assert n_matches == len(matches), (
+        f"expected {len(matches)} matches, got {n_matches}: a download was lost")
 
 
 if __name__ == "__main__":
